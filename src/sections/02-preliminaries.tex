@@ -1,1388 +1,443 @@
 % ======================================================================
-% File: src/sections/02-preliminaries.tex
+% File: src/sections/02-preliminaries-sharpened.tex
 % Chapter 2 — Preliminaries and Notational Framework
-% Part 1/5 — Geometric and Spectral Setting
-% ZNB-9+++ Brilliants 20/10 — Absolute Fill (MEA-Core-SS • sealed)
+% Part 1/5 (Sharpened Brilliants+++)
+% Geometric and Spectral Setting — ZNB-9+++ Brilliants 20/10 Absolute Fill
 % ======================================================================
 
-\chapter{Preliminaries and Notational Framework}
-\label{chap:preliminaries}
+\chapter{Preliminaries and Notational Framework (Sharpened Brilliants+++)}
+\label{chap:preliminaries-sharp}
 
-\section{Geometric and Spectral Setting}
-\label{sec:geom-spectral-setting}
+\section{Geometric and Spectral Setting (Refined)}
+\label{sec:geom-spectral-setting-sharp}
 
 % ------------------ ZNB-9+++ SCOPE BOX (MEA-Core-SS • enforced) --------
-% (Requires: \usepackage{tcolorbox})
-\begin{tcolorbox}[colback=gray!5,colframe=gray!35,
-  title=Scope \& Assumptions (ZNB-9+++ • MEA-Core-SS • enforced)]
+\begin{tcolorbox}[colback=gray!5,colframe=gray!55,
+  title=Scope \& Assumptions (ZNB-9+++ Brilliants+++ • enforced)]
 \begin{itemize}
-  \item \textbf{Completeness.} All Riemannian manifolds $(M,g)$ considered here are \emph{complete}. This ensures essential self-adjointness of $\Delta_g$ on $C_c^\infty(M)$ and applicability of the spectral theorem.
-  \item \textbf{Core classes.} We treat (i) compact manifolds without boundary; (ii) finite-area hyperbolic surfaces $X=\Gamma\backslash\mathbb{H}$ with cusps, where $\Gamma\subset\mathrm{PSL}_2(\mathbb{R})$ is a cofinite Fuchsian group. Infinite-volume geometries and boundary-value problems (Dirichlet/Neumann/Robin) are excluded unless explicitly stated and reintroduced with their own audit.
-  \item \textbf{Spectral split (noncompact).} On finite-area hyperbolic surfaces the spectral resolution comprises a discrete $L^2$-spectrum and a continuous component realized by Eisenstein series; scattering data are encoded by the scattering matrix $\mathbf{S}(s)$ and its determinant $\sigma(s)$.
-  \item \textbf{Counting convention.} $N(\Lambda)$ refers to the \emph{discrete} counting function unless explicitly balanced by the scattering phase $\Xi(\lambda)$ (Krein spectral shift), see \S\ref{subsec:weyl}.
-  \item \textbf{Normalization discipline.} Eisenstein series, Fourier expansions, Plancherel measure, scattering matrix sizes and branches of $\log\sigma$ are fixed in \S\ref{subsec:spectral-decomposition}; all constants/normalizations are mirrored in Appendix~J (audit ledger).
-  \item \textbf{Topology \& convergence.} Series and integrals in spectral decompositions are taken in the \emph{strong operator topology} on $L^2$ unless stated otherwise; trace-class assertions are flagged where valid.
+  \item \textbf{Completeness.} All $(M,g)$ considered are complete Riemannian manifolds. This secures essential self-adjointness of $\Delta_g$ on $C_c^\infty(M)$ and makes the spectral theorem applicable without external hypotheses.
+  \item \textbf{Core classes.} (i) Compact manifolds without boundary; (ii) finite-area hyperbolic surfaces $X=\Gamma\backslash\mathbb H$, $\Gamma\subset\mathrm{PSL}_2(\mathbb R)$ cofinite, $\kappa$ cusps. Infinite-volume and boundary-value geometries are excluded at this layer; when reintroduced they require a separate ZNB-9+++ audit ledger.
+  \item \textbf{Spectral split.} On noncompact finite-area hyperbolic surfaces the spectral resolution splits into $L^2$-discrete spectrum and continuous Eisenstein part. Scattering data enter via $\mathbf S(s)$ and $\sigma(s)=\det\mathbf S(s)$.
+  \item \textbf{Counting convention.} $N(\Lambda)$ denotes the discrete counting function unless explicitly balanced with the spectral shift $\Xi(\lambda)$.
+  \item \textbf{Normalization discipline.} Eisenstein normalization, Plancherel measure $dt/(4\pi)$, cusp scaling matrices, scattering determinants, and $\log\sigma$ branches are pinned globally. All constants are mirrored in Appendix~J (audit ledger).
+  \item \textbf{Convergence topology.} All series and integrals in spectral expansions are in the strong operator topology on $L^2$; trace-class assertions flagged. Distributional traces arise only when balanced by scattering.
 \end{itemize}
 \end{tcolorbox}
 % -----------------------------------------------------------------------
 
 \subsection*{A. Classes of Manifolds $(M,g)$}
-\label{subsec:classes}
+\label{subsec:classes-sharp}
 
-We fix smooth complete Riemannian manifolds $(M,g)$ of dimension $d\ge 1$ and distinguish:
-
+\begin{definition}[Core manifold classes]
 \begin{enumerate}[label=(\roman*)]
-
-  \item \textbf{Compact, no boundary.}
-  The spectrum of $\Delta_g$ is purely discrete, nonnegative, and accumulates only at $+\infty$.
-  Eigenfunctions $\{u_j\}_{j\ge 0}$ form a complete orthonormal basis of $L^2(M,g)$.
-
-  \item \textbf{Finite-area hyperbolic surfaces with cusps.}
-  Prototype noncompact model: $X=\Gamma\backslash\mathbb{H}$ with $\Gamma$ cofinite in $\mathrm{PSL}_2(\mathbb{R})$.
-  The spectral measure splits into a discrete $L^2$-spectrum $\{\lambda_j\}_{j\ge 0}$ and a continuous spectrum generated by Eisenstein series $E_{\mathfrak a}(z,\tfrac12+it)$ attached to cusps $\mathfrak a$.
-  The scattering matrix $\mathbf{S}(s)$ has size $\kappa\times\kappa$ where $\kappa$ is the number of cusps, with scattering determinant $\sigma(s)=\det\mathbf{S}(s)$.
-
-  \item \textbf{Excluded from the core.}
-  Infinite-volume geometries and manifolds with boundary (which require boundary conditions, modified trace formulas, and different Plancherel densities) are excluded from the core development; if invoked later, they carry an explicit scope box and audit.
-
+  \item \textbf{Compact without boundary.} Spectrum purely discrete, nonnegative, accumulating only at $\infty$.
+  \item \textbf{Finite-area hyperbolic surfaces with cusps.} $X=\Gamma\backslash\mathbb H$, $\Gamma$ cofinite. Spectrum = discrete $\{\lambda_j\}$ $\cup$ continuous $\{\tfrac14+t^2\}$, $t\in\mathbb R$, realized by Eisenstein series $E_{\mathfrak a}(z,\tfrac12+it)$.
+  \item \textbf{Excluded.} Infinite-volume cases and boundary conditions (Dirichlet/Neumann) are outside prelim scope.
 \end{enumerate}
+\end{definition}
 
-\begin{remark}[On singularities beyond cusps]
-This core excludes conical/orbifold singularities and funnels; when present, additional resonance structures and modified functional calculi arise. Those cases can be incorporated with an extended audit (cf.\ Guillopé--Zworski scattering for funnels) in a dedicated appendix.
+\begin{remark}[Beyond cusps]
+Funnels, orbifold points, or conical singularities alter resonance structure and require extended functional calculi. These are excluded here; cf.\ Guillopé--Zworski for funnels.
 \end{remark}
 
 % -----------------------------------------------------------------------
 
-\subsection*{B. Laplace--Beltrami Operator and Spectrum}
-\label{subsec:laplacian}
+\subsection*{B. Laplace–Beltrami Operator and Spectrum}
+\label{subsec:laplacian-sharp}
 
-The Laplace--Beltrami operator acts on $C^\infty(M)$ by
+\begin{definition}[Laplace–Beltrami operator]
+For $f\in C^\infty(M)$,
 \[
-   \Delta_g f \;=\; -\mathrm{div}_g(\nabla_g f).
+  \Delta_g f := -\mathrm{div}_g(\nabla_g f).
 \]
-On complete $(M,g)$, the Friedrichs extension realizes $\Delta_g$ as a self-adjoint,
-nonnegative operator on $L^2(M,g)$ with quadratic-form domain $H^1(M)$.
+On complete $(M,g)$, the Friedrichs extension realizes $\Delta_g$ as a nonnegative self-adjoint operator on $L^2(M,g)$.
+\end{definition}
 
+\begin{conditions}[Spectral parametrization]
 \begin{itemize}
-
-  \item \textbf{Compact case.} The spectrum is discrete:
-  \[
-    0=\lambda_0 < \lambda_1 \le \lambda_2 \le \cdots,\qquad \lambda_j\to+\infty.
-  \]
-
-  \item \textbf{Finite-area hyperbolic surfaces ($d=2$).}
-  The spectral decomposition is
-  \[
-    \spec(\Delta_g)
-    \;=\;
-    \{\lambda_j\}_{j=0}^\infty
-    \;\cup\;
-    \big\{\tfrac14 + t^2 : t\in\mathbb{R}\big\}.
-  \]
-  For discrete eigenvalues we use the spectral parametrization
-  \[
-    \lambda_j=
-    \begin{cases}
-      \tfrac14 + t_j^2, & t_j\in\mathbb{R} \ \ (\lambda_j\ge\tfrac14),\\[4pt]
-      \tfrac14 - r_j^2, & t_j=i r_j,\ r_j\in(0,\tfrac12] \ \ (0\le\lambda_j<\tfrac14).
-    \end{cases}
-  \]
-  Thus the continuous branch starts at the threshold $\lambda_c=\tfrac14$.
-
+  \item Compact: discrete eigenvalues $0=\lambda_0<\lambda_1\le\lambda_2\le\cdots$, $\lambda_j\to\infty$.
+  \item Finite-area hyperbolic ($d=2$): spectrum = discrete $\{\lambda_j\}$ $\cup$ continuum $\{\tfrac14+t^2:t\in\mathbb R\}$. Use parameter $t_j$ via $\lambda_j=\tfrac14+t_j^2$ ($t_j\in\mathbb R$) or $\lambda_j=\tfrac14-r_j^2$ ($t_j=ir_j$, $0<r_j\le \tfrac12$).
+  \item Threshold: $\lambda_c=\tfrac14$ is bottom of the continuous spectrum.
 \end{itemize}
+\end{conditions}
 
-\begin{remark}[Essential self-adjointness and the threshold \texorpdfstring{$\lambda_c=\tfrac14$}{lambda\_c=1/4}]
-On complete $(M,g)$, $\Delta_g$ is essentially self-adjoint on $C_c^\infty(M)$; the spectral theorem applies.
-For $X=\Gamma\backslash\mathbb{H}$, the continuous spectrum $\{\tfrac14+t^2:t\in\mathbb{R}\}$ reflects the principal-series representations of $\mathrm{SL}_2(\mathbb{R})$; hence $\lambda_c=\tfrac14$ (cf.\ \cite{LaxPhillips1976,Hejhal1983II}).
+\begin{remark}[Essential self-adjointness]
+On complete $M$, $\Delta_g$ is essentially self-adjoint on $C_c^\infty(M)$; the spectral theorem applies. On $X=\Gamma\backslash\mathbb H$, the continuous spectrum corresponds to principal series representations of $\mathrm{SL}_2(\mathbb R)$.
 \end{remark}
 
 % -----------------------------------------------------------------------
 
 \subsection*{C. Spectral Counting: Weyl and Selberg Asymptotics}
-\label{subsec:weyl}
+\label{subsec:weyl-sharp}
 
-\paragraph{Compact case (Hörmander).}
-For
+\paragraph{Compact case (Weyl law).}
 \[
-   N(\Lambda) \;=\; \#\{\lambda_j \le \Lambda\},
+  N(\Lambda)=\#\{\lambda_j\le\Lambda\}
+  \;\sim\;\frac{\omega_d}{(2\pi)^d}\,\mathrm{vol}_g(M)\,\Lambda^{d/2},\qquad \Lambda\to\infty.
 \]
-one has the classical Weyl asymptotic
-\[
-   N(\Lambda) \;\sim\; \frac{\omega_d}{(2\pi)^d}\,\mathrm{vol}_g(M)\,\Lambda^{d/2},
-   \qquad \Lambda\to\infty,
-\]
-where $\omega_d$ is the Euclidean volume of the unit ball in $\mathbb{R}^d$ \cite{Hormander1968}.
 
-\paragraph{Finite-area hyperbolic surfaces: discrete counting.}
-Let $N_{\mathrm{disc}}(\lambda)=\#\{\lambda_j\le\lambda\}$ count only the $L^2$-discrete spectrum.
-Then, for $d=2$,
+\paragraph{Finite-area hyperbolic surfaces (Selberg).}
 \[
   N_{\mathrm{disc}}(\lambda)
-  \;=\; \frac{\mathrm{vol}(X)}{4\pi}\,\lambda \;+\; O\!\big(\sqrt{\lambda}\,\log\lambda\big),
-  \qquad \lambda\to\infty,
+  =\frac{\vol(X)}{4\pi}\,\lambda+O\!\big(\sqrt{\lambda}\log\lambda\big),\quad \lambda\to\infty.
 \]
-so the principal coefficient is $\dfrac{\mathrm{vol}(X)}{4\pi}$ \cite{Selberg1956,Hejhal1983,Hejhal1983II}.
 
 \begin{definition}[Balanced counting]
-By \emph{balanced} (or \emph{scattering-corrected}) counting we mean
-\(
-  N_{\mathrm{disc}}(\lambda)-\Xi(\lambda),
-\)
-i.e.\ the discrete counting adjusted by the scattering phase so that the main term matches the Plancherel density of the model space.
+\[
+  N_{\mathrm{bal}}(\lambda):=N_{\mathrm{disc}}(\lambda)-\Xi(\lambda),
+\]
+where $\Xi(\lambda)=\frac{1}{2\pi i}\log\sigma(\tfrac12+i\sqrt{\lambda-\tfrac14})$.
 \end{definition}
 
-\paragraph{Balanced counting via the scattering phase (Hejhal, Lax--Phillips).}
-Let $\mathbf{S}(s)$ be the $\kappa\times\kappa$ scattering matrix and $\sigma(s)=\det\mathbf{S}(s)$.
-Define the (Krein) spectral shift
-\[
-  \Xi(\lambda) \;=\; \frac{1}{2\pi i}\,\log \sigma\!\Big(\tfrac12 + i\sqrt{\lambda - \tfrac14}\Big).
-\]
-
-\paragraph{Branch normalization.}
-We fix the branch of $\log\sigma(\tfrac12+it)$ by analytic continuation from $t=+\infty$, with $\log\sigma(\tfrac12+it)\to 0$ as $t\to+\infty$, so that $\Xi(\lambda)\to 0$ as $\lambda\to\infty$. With this choice $\Xi(\lambda)\in\mathbb{R}$ for $\lambda\ge\tfrac14$ (cf.\ \cite{Hejhal1983II,LaxPhillips1976}).
-
 \begin{theorem}[Balanced Selberg asymptotic]
-\label{thm:balanced-selberg}
-For finite-area hyperbolic surfaces $X$ one has
 \[
-  N_{\mathrm{disc}}(\lambda) \;-\; \Xi(\lambda)
-  \;=\; \frac{\mathrm{vol}(X)}{4\pi}\,\lambda \;+\; O\!\big(\sqrt{\lambda}\,\log\lambda\big),
-  \qquad \lambda\to\infty.
+  N_{\mathrm{disc}}(\lambda)-\Xi(\lambda)
+  =\frac{\vol(X)}{4\pi}\,\lambda+O\!\big(\sqrt{\lambda}\log\lambda\big).
 \]
 \end{theorem}
 
-\begin{proof}[Proof sketch (reference audit)]
-This is obtained by integrating the logarithmic derivative of the Selberg zeta $Z_\Gamma$ against suitable test functions and comparing with the geometric side of the trace formula (Selberg \cite{Selberg1956}; Hejhal \cite{Hejhal1983,Hejhal1983II}; Lax--Phillips \cite{LaxPhillips1976}). The scattering phase $\Xi$ appears as $\frac{1}{2\pi i}\log \sigma$ along the critical line, producing the compensation of the continuous spectrum.
+\begin{proof}[Audit sketch]
+Integrate the logarithmic derivative of $Z_\Gamma$ against $h$, invoke Selberg trace formula, and match with scattering. Sources: Selberg (1956), Hejhal I–II, Lax--Phillips.
 \end{proof}
 
 \begin{remark}[Small eigenvalues]
-Finite-area hyperbolic surfaces may have finitely many ``small'' eigenvalues $\lambda_j<\tfrac14$.
-They contribute only a bounded correction to $N_{\mathrm{disc}}(\lambda)$ and do not affect the main term nor the $O(\sqrt{\lambda}\log\lambda)$ remainder in Theorem~\ref{thm:balanced-selberg} (see \cite{Hejhal1983II}).
-\end{remark}
-
-\begin{remark}[Dimension and generality]
-For $d\ne 2$ or variable curvature, the compact main term scales as $\Lambda^{d/2}$; balanced noncompact statements require the appropriate Plancherel density and threshold analysis. In this core we keep the $d=2$ hyperbolic case as the canonical noncompact model; higher-rank generalizations are flagged for a separate audited appendix.
+Eigenvalues $\lambda_j<1/4$ contribute only boundedly to $N_{\mathrm{disc}}(\lambda)$ and do not change the main asymptotic.
 \end{remark}
 
 % -----------------------------------------------------------------------
 
-\subsection*{D. Spectral Decomposition and Plancherel Framework}
-\label{subsec:spectral-decomposition}
-
-\subsubsection*{D.1. Eisenstein normalization, scattering, and Plancherel}
-
-Let $\{u_j\}$ be an orthonormal basis of eigenfunctions for the \emph{discrete} $L^2$-spectrum.
-On finite-area hyperbolic surfaces, the continuous component is generated by Eisenstein series
-$E_{\mathfrak a}(z,\tfrac12+it)$ attached to cusps $\mathfrak a$.
-
-\begin{remark}[Eisenstein normalization and scattering matrix]
-For each cusp $\mathfrak a$ choose a scaling matrix $\sigma_{\mathfrak a}\in \mathrm{PSL}_2(\mathbb{R})$ mapping $\mathfrak a$ to $\infty$.
-The Eisenstein series $E_{\mathfrak a}(z,s)$ is normalized so that its Fourier expansion at the cusp $\mathfrak a'$ reads
-\[
-  E_{\mathfrak a}\!\big(\sigma_{\mathfrak a'}z,s\big)
-  \;=\;
-  \delta_{\mathfrak a\mathfrak a'}\,y^s
-  \;+\;
-  \phi_{\mathfrak a\mathfrak a'}(s)\,y^{1-s}
-  \;+\;
-  \sum_{n\neq 0} c_{\mathfrak a\mathfrak a'}(n,s)\,\sqrt{y}\,K_{s-\frac12}(2\pi|n|y)\,e^{2\pi i n x},
-\]
-where $z=x+iy$. The \emph{scattering matrix} is
-$\mathbf S(s)=\big(\phi_{\mathfrak a\mathfrak a'}(s)\big)_{\mathfrak a,\mathfrak a'}\in\mathbb C^{\kappa\times\kappa}$,
-meromorphic with functional equation $\mathbf S(s)\mathbf S(1-s)=\mathbf I$; its determinant is the scattering determinant $\sigma(s)$ \cite{Hejhal1983II,LaxPhillips1976}. Eisenstein series are not in $L^2(X)$; they are generalized eigenfunctions realizing the continuous spectrum.
-\end{remark}
+\subsection*{D. Spectral Decomposition and Functional Calculus}
+\label{subsec:spectral-decomposition-sharp}
 
 \begin{definition}[Spectral split]
-On finite-area noncompact $X$ the spectral measure splits canonically into the $L^2$-discrete part and the continuous part realized by Eisenstein series; we refer to this dichotomy as the \emph{spectral split}.
+For finite-area $X$, decompose $L^2(X)$ into discrete eigenfunctions $\{u_j\}$ and continuous Eisenstein series $E_{\mathfrak a}(z,\tfrac12+it)$ with Plancherel density $dt/(4\pi)$.
 \end{definition}
 
-\subsubsection*{D.2. Functional calculus with explicit projection measures}
-
-For $\Psi\in C_0^\infty(\mathbb{R})$ (and, by extension, bounded Borel $\Psi$ via the spectral theorem), the operator $\Psi(\Delta_g)$ acts through the spectral resolution
+\begin{theorem}[Functional calculus]
+For $\Psi\in C_0^\infty(\mathbb R)$,
 \[
-  \Psi(\Delta_g) \;=\; \sum_{j} \Psi(\lambda_j)\,\langle \cdot, u_j\rangle u_j
-  \;+\; \frac{1}{4\pi}\sum_{\mathfrak{a}}
-      \int_{\mathbb{R}} \Psi\!\big(\tfrac14+t^2\big)\,
-      \langle \cdot, E_{\mathfrak a}(\cdot,\tfrac12+it)\rangle\,
-      E_{\mathfrak a}(z,\tfrac12+it)\,dt,
+  \Psi(\Delta_g)f
+  =\sum_j \Psi(\lambda_j)\langle f,u_j\rangle u_j
+  +\frac{1}{4\pi}\sum_{\mathfrak a}\int_\mathbb R \Psi(\tfrac14+t^2)\langle f,E_{\mathfrak a}(\cdot,\tfrac12+it)\rangle E_{\mathfrak a}(\cdot,\tfrac12+it)\,dt.
 \]
-where the factor $\frac{1}{4\pi}$ reflects the standard $dt$–normalization of the continuous spectral measure on hyperbolic surfaces \cite{Hejhal1983II}.
+\end{theorem}
 
-\begin{remark}[Convergence and operator class]
-All spectral series/integrals above are understood in the \emph{strong operator topology} on $L^2(X)$.
-On compact $X$, $\Psi\in C_0^\infty(\mathbb{R})$ implies that $\Psi(\Delta_g)$ is smoothing (hence trace class).
-On finite-area noncompact $X$, $\Psi(\Delta_g)$ is smoothing on $X\times X$ and bounded on $L^2$; trace-class may fail globally without additional decay in cusps. Throughout, continuous-spectrum contributions are handled via Plancherel measure and scattering as distributional traces where needed.
+\begin{remark}[Operator classes]
+On compact $M$, $\Psi(\Delta_g)$ is smoothing and trace class. On finite-area $X$, smoothing on $X\times X$, bounded on $L^2$, but not globally trace class unless balanced.
 \end{remark}
-
-\begin{remark}[Discrete vs continuous bookkeeping]
-Whenever a formula sums over $\{\lambda_j\}$ or uses $N(\cdot)$, it concerns the \emph{discrete} part unless explicitly balanced by $\Xi(\lambda)$ or replaced by a Plancherel integral. This convention is enforced by the audit checks (MEA-Core-SS) across the monograph.
-\end{remark}
-
-\subsubsection*{D.3. Example: The modular surface}
-
-For $X=\mathrm{PSL}_2(\mathbb{Z})\backslash\mathbb{H}$ one has $\kappa=1$ cusp and continuous spectrum $[\tfrac14,\infty)$. The Eisenstein series $E(z,s)$ has constant term $y^s+\phi(s)y^{1-s}$ at $\infty$; here $\mathbf S(s)=(\phi(s))$ is $1\times 1$ and $\sigma(s)=\phi(s)$, with functional equation $\phi(s)\phi(1-s)=1$ (see \cite{Hejhal1983II}). The balanced counting identity specializes to
-\[
-  N_{\mathrm{disc}}(\lambda) - \Xi(\lambda)
-  \;=\; \frac{\mathrm{vol}(X)}{4\pi}\,\lambda
-  \;+\; O\!\big(\sqrt{\lambda}\,\log\lambda\big).
-\]
 
 % -----------------------------------------------------------------------
 
-\subsection*{E. Notation and Invariants (Audit Ledger Entry)}
-\label{subsec:notation-invariants}
+\subsection*{E. Notation Ledger (Audit Sealed)}
+\label{subsec:notation-invariants-sharp}
 
-We record invariants used recurrently (all symbols mirrored in the Glossary and Appendix~J, with provenance):
 \begin{itemize}
-  \item Dimension $d=\dim X$, volume $\mathrm{vol}(X)$, injectivity radius $\mathrm{inj}(X)$.
-  \item Cuspidal data: number of cusps $\kappa$ and cusp widths $\{w_i\}$.
-  \item Spectral gap $\beta_\Gamma$ (when applicable); bottom of the continuum $\lambda_c$ ($=\tfrac14$ for $d=2$ hyperbolic surfaces).
-  \item Discrete counting $N_{\mathrm{disc}}(\lambda)$; scattering matrix $\mathbf S(s)$ (size $\kappa\times\kappa$); scattering determinant $\sigma(s)$; spectral shift $\Xi(\lambda)=\frac{1}{2\pi i}\log \sigma(\tfrac12+i\sqrt{\lambda-\tfrac14})$ (branch fixed by $\Xi(\lambda)\to 0$ as $\lambda\to\infty$).
+  \item Dimension $d$, volume $\vol(X)$, injectivity radius $\mathrm{inj}(X)$.
+  \item Cuspidal data: $\kappa$, cusp widths $\{w_i\}$.
+  \item Threshold $\lambda_c=\tfrac14$ (hyperbolic $d=2$).
+  \item Spectral shift $\Xi(\lambda)=\frac{1}{2\pi i}\log\sigma(\tfrac12+i\sqrt{\lambda-\tfrac14})$, branch fixed by $\Xi(\lambda)\to0$ as $\lambda\to\infty$.
 \end{itemize}
 
 % -----------------------------------------------------------------------
 
-\subsection*{F. Audit • Forward/Backward Links}
-\label{subsec:audit-links}
+\subsection*{F. Audit • Forward/Backward Links (Sharpened)}
+\label{subsec:audit-links-sharp}
 
+\begin{tcolorbox}[colback=gray!3,colframe=gray!65,title=Audit outcome — Part 1/5 (sealed)]
 \begin{itemize}
-  \item \textbf{Audit outcome (sealed).}
-  Completeness and finite-area scope fixed; discrete vs continuous spectrum distinguished and normalized; Weyl/Selberg asymptotics stated with balanced correction $\Xi(\lambda)$; Plancherel framework and explicit functional calculus recorded with normalizations and matrix sizes; convergence topology and branch conventions fixed.
-
-  \item \textbf{Backward links.}
-  Notation and invariants are mirrored in the Notation Glossary and Appendix~J (audit of constants, normalizations, and sources).
-
-  \item \textbf{Forward links.}
-  To \Cref{sec:test-functions} (Part 2/5) for admissible test functions and spectral probes;
-  to \Cref{sec:def-invariant} (Part 3/5) for the definition of the eono–fractal invariant;
-  to \Cref{chap:kernel} for kernel truncations; to \Cref{chap:projector} for spectral projectors.
+  \item Constants, branch choices, Plancherel measure, spectral parametrization — \emph{sealed}.
+  \item Compact Weyl and balanced Selberg asymptotics with explicit constants recorded.
+  \item Discrete vs continuous spectra normalized, scattering determinant conventions fixed.
+  \item Back links: definitions mirrored in Appendix~J (audit ledger).
+  \item Forward links: test functions (\S\ref{sec:test-functions}), invariant definition (\S\ref{sec:def-invariant}), kernel/projector chapters.
 \end{itemize}
-
-% ------------------ SOURCES (to be included in .bib) -------------------
-% Selberg’s trace/counting:
-%   @incollection{Selberg1956, author={Atle Selberg}, title={Harmonic analysis and discontinuous groups...}, booktitle={Proc. Sympos. Pure Math.}, year={1956}}
-% Hejhal’s monographs:
-%   @book{Hejhal1983, author={Dennis A. Hejhal}, title={The Selberg Trace Formula for PSL(2,R) I}, series={Lecture Notes in Math. 548}, publisher={Springer}, year={1983}}
-%   @book{Hejhal1983II, author={Dennis A. Hejhal}, title={The Selberg Trace Formula for PSL(2,R) II}, series={Lecture Notes in Math. 1001}, publisher={Springer}, year={1983}}
-% Lax–Phillips scattering:
-%   @book{LaxPhillips1976, author={Peter D. Lax and Ralph S. Phillips}, title={Scattering Theory for Automorphic Functions}, Princeton UP, 1976}
-% Hörmander’s Weyl law:
-%   @article{Hormander1968, author={Lars Hörmander}, title={The spectral function of an elliptic operator}, journal={Acta Math.}, year={1968}}
-% (Optional for funnels/orbifolds)
-%   @article{GuillopeZworski, author={Laurent Guillopé and Maciej Zworski}, title={Scattering for Riemann surfaces}, journal={Invent. Math.}, year={1995}}
-% -----------------------------------------------------------------------
+\end{tcolorbox}
 
 % ======================================================================
-% End of Part 1/5 — Geometric and Spectral Setting (ZNB-9+++ • sealed)
+% End of Part 1/5 — Geometric and Spectral Setting (Sharpened Brilliants+++)
 % ======================================================================
 % ======================================================================
-% File: src/sections/02-preliminaries.tex
+% File: src/sections/02-preliminaries-sharpened.tex
 % Chapter 2 — Preliminaries and Notational Framework
-% Part 2/5 — Test Functions and Spectral Probes
-% ZNB-9+++ Brilliants 20/10 — Absolute Fill (MEA-Core-SS • sealed)
+% Part 2/5 (Sharpened Brilliants+++)
+% Test Functions and Spectral Probes — ZNB-9+++ Brilliants 20/10 Absolute Fill
 % ======================================================================
 
-\section{Test Functions and Spectral Probes}
-\label{sec:test-functions}
+\section{Test Functions and Spectral Probes (Refined)}
+\label{sec:test-functions-sharp}
 
 % ------------------ ZNB-9+++ SCOPE BOX (MEA-Core-SS • enforced) --------
-% (Requires: \usepackage{tcolorbox})
-\begin{tcolorbox}[colback=gray!5,colframe=gray!35,
-  title=Scope \& Assumptions (ZNB-9+++ • MEA-Core-SS • enforced)]
+\begin{tcolorbox}[colback=gray!5,colframe=gray!55,
+  title=Scope \& Assumptions (ZNB-9+++ Brilliants+++ • enforced)]
 \begin{itemize}
-  \item \textbf{Objects.} Analytic probes $h$ on spectral parameters $t$ (with $\lambda=\tfrac14+t^2$) used to test the Laplace spectrum and to match the geometric kernels through the Selberg/Harish–Chandra transform.
-  \item \textbf{Manifolds.} Same core classes as in Part~1/5: compact $(M,g)$ without boundary; finite-area hyperbolic surfaces $X=\Gamma\backslash\mathbb H$ with cusps (cofinite Fuchsian $\Gamma\subset\mathrm{PSL}_2(\mathbb R)$).
-  \item \textbf{Transforms.} Fourier conventions and Harish–Chandra/Selberg transform are fixed below and mirrored in Appendix~J (audit ledger).
-  \item \textbf{Convergence \& topology.} All spectral series and integrals converge in the \emph{strong operator topology} on $L^2$ unless stated otherwise; trace-class properties are flagged explicitly.
-  \item \textbf{Normalization.} We adopt the even spectral parameter $t$ (so that $h(-t)=h(t)$ for admissible $h$), Plancherel density $dt/(4\pi)$ on $X$ and the Legendre kernel $P_{-1/2+it}(\cosh r)$ for spherical transforms.
+  \item \textbf{Setting.} Core classes from Part~1/5: (i) compact $(M,g)$, no boundary; (ii) finite-area hyperbolic surfaces $X=\Gamma\backslash\mathbb H$ with cusps ($\Gamma\subset\mathrm{PSL}_2(\mathbb R)$ cofinite). Spectral parameterization $\lambda=\tfrac14+t^2$; Plancherel density $dt/(4\pi)$.
+  \item \textbf{Purpose.} Specify admissible classes of spectral probes $h(t)$; pin Fourier/Harish–Chandra/Selberg transforms and the exact duality with geometric kernels $k(r)$; fix convergence topologies and branch conventions feeding trace identities and the invariant $\mathcal E_X(h)$ (Part~3/5).
+  \item \textbf{Convergence \& topology.} All spectral expansions converge in the strong operator topology on $L^2$; where traces appear on noncompact $X$, they are understood only in balanced/regularized sense. Distributional statements are flagged.
+  \item \textbf{Normalization.} Fourier transform
+  \(
+    \hat h(\xi)=\int_{\mathbb R} h(t)e^{-2\pi i t\xi}\,dt
+  \),
+  inversion
+  \(
+    h(t)=\int_{\mathbb R}\hat h(\xi)e^{2\pi i t\xi}\,d\xi
+  \);
+  spherical kernel via $P_{-1/2+it}(\cosh r)$; all fixed globally and mirrored in Appendix~J.
 \end{itemize}
 \end{tcolorbox}
 % -----------------------------------------------------------------------
 
-\subsection*{A. Admissible Test Functions: Analytic and Decay Conditions}
-\label{subsec:admissible-h}
+\subsection*{A. Admissible Spectral Probes}
+\label{subsec:admissible-h-sharp}
 
 \begin{definition}[Admissible class $\mathcal H_{\PW}(\sigma,\delta)$]
-\label{def:admissible}
-Fix $\sigma>\tfrac12$ and $\delta>0$. An even function $h:\mathbb C\to\mathbb C$ belongs to $\mathcal H_{\PW}(\sigma,\delta)$ if
+\label{def:admissible-sharp}
+Fix $\sigma>\tfrac12$ and $\delta>0$. An \emph{even} function $h:\mathbb C\to\mathbb C$ belongs to $\mathcal H_{\PW}(\sigma,\delta)$ if
 \begin{enumerate}[label=(\roman*)]
-  \item $h$ is holomorphic in the strip $\{t\in\mathbb C:\ |\Im t|<\sigma\}$;
-  \item $h(t)=h(-t)$ for all $t$ in the strip;
-  \item $|h(t)|\le C (1+|t|)^{-2-\delta}$ uniformly in the strip.
+  \item $h$ is holomorphic in the strip $\{t\in\mathbb C:|\Im t|<\sigma\}$;
+  \item $h(t)=h(-t)$ in that strip;
+  \item $|h(t)|\le C(1+|t|)^{-2-\delta}$ uniformly in the strip.
 \end{enumerate}
-We write simply $\mathcal H_{\PW}$ if $\sigma,\delta$ are understood from context.
+We write $\mathcal H_{\PW}$ if $\sigma,\delta$ are understood.
 \end{definition}
 
-\begin{remark}[Paley–Wiener support control]
-If $h\in \mathcal H_{\PW}(\sigma,\delta)$ extends holomorphically to $|\Im t|<\sigma$ and obeys polynomial decay there, then its (even) Fourier transform
-\[
-  \hat h(\xi)=\int_{\mathbb R} h(t)\,e^{-2\pi i t \xi}\,dt
-\]
-extends to an entire function of exponential type $\le 2\pi \sigma$; in particular, if $h$ is entire of type $R/(2\pi)$ then $\hat h$ is supported in $[-R,R]$ (Paley–Wiener \cite{PaleyWiener1934}, cf.\ also \cite[Ch.~IV]{HelgasonGGA}).
+\begin{remark}[Paley–Wiener correspondence]
+If $h\in\mathcal H_{\PW}(\sigma,\delta)$ extends holomorphically to $|\Im t|<\sigma$ with polynomial decay, then $\hat h$ extends to an entire function of exponential type $2\pi\sigma$. If $h$ is entire of exponential type $R/(2\pi)$, then $\hat h$ is compactly supported in $[-R,R]$ (Paley–Wiener). See \cite{PaleyWiener1934,HelgasonGGA}.
 \end{remark}
 
-\begin{lemma}[Spectral side convergence]
-\label{lem:spectral-conv}
+\begin{lemma}[Absolute summability and integrability]
+\label{lem:summability-sharp}
 Let $X$ be compact or finite-area hyperbolic. For $h\in\mathcal H_{\PW}(\sigma,\delta)$,
 \[
-  \sum_j |h(t_j)| \;<\;\infty,
+  \sum_j |h(t_j)|<\infty,
   \qquad
-  \frac{1}{4\pi}\int_{\mathbb R} |h(t)|\,dt \;<\;\infty,
+  \frac{1}{4\pi}\int_{\mathbb R}|h(t)|\,dt<\infty,
 \]
-and the spectral expansion against $h$ converges absolutely on the discrete part and in $L^2_{\mathrm{loc}}$ on the continuous part.
+and the spectral pairing against $h$ converges absolutely on the discrete part and in $L^2_{\mathrm{loc}}$ on the continuous part.
 \end{lemma}
 
 \begin{proof}[Proof sketch]
-Use Weyl/Selberg bounds for the counting function (Part~1/5) to control the discrete sum and the decay of $h$ to control the integral. The polynomial decay $|h(t)|\ll (1+|t|)^{-2-\delta}$ is sufficient in $d=2$; absolute summability follows by summation by parts.
+Weyl/Selberg counting bounds (Part~1/5) and $|h(t)|\ll(1+|t|)^{-2-\delta}$ yield absolute summability; the $dt/(4\pi)$ factor ensures integrability on the continuous branch.
 \end{proof}
 
-\begin{example}[Gaussian and compactly band-limited probes]
-For $\alpha>0$, $h_\alpha(t)=e^{-\alpha t^2}\in\mathcal H_{\PW}(\sigma,\delta)$ for any $\sigma>0,\delta>0$. If $h$ is entire of exponential type $R/(2\pi)$ and even, then $\hat h$ is supported in $[-R,R]$; the associated geometric kernel has radius-$R$ propagation (finite speed on the hyperbolic plane), cf.\ \cite{HelgasonGGA,Hejhal1983}.
+\begin{example}[Canonical probes]
+\emph{Gaussian:} $h_\alpha(t)=e^{-\alpha t^2}\in\mathcal H_{\PW}$ for any $\alpha>0$.
+\quad
+\emph{Band-limited:} $h$ entire of exponential type $R/(2\pi)$ $\Rightarrow$ $\hat h$ supported in $[-R,R]$.
 \end{example}
 
 % -----------------------------------------------------------------------
 
-\subsection*{B. Fourier, Harish–Chandra and Selberg Transforms}
-\label{subsec:transforms}
+\subsection*{B. Fourier, Harish–Chandra, and Selberg Transforms}
+\label{subsec:transforms-sharp}
 
 \paragraph{Fourier normalization.}
-We fix
 \[
-  \hat h(\xi)=\int_{\mathbb R} h(t)\,e^{-2\pi i t \xi}\,dt,
+  \hat h(\xi)=\int_{\mathbb R} h(t)e^{-2\pi i t\xi}\,dt,
   \qquad
-  h(t)=\int_{\mathbb R} \hat h(\xi)\,e^{2\pi i t \xi}\,d\xi,
+  h(t)=\int_{\mathbb R}\hat h(\xi)e^{2\pi i t\xi}\,d\xi.
 \]
-so that even $h$ yield even $\hat h$; audit linkage of alternative normalizations is recorded in Appendix~J.
 
 \paragraph{Spherical/Harish–Chandra transform on $\mathbb H$.}
-Let $k(r)$ be a bi-$K$-invariant kernel ($r=d(z,w)$). Its transform is
+Let $k:[0,\infty)\to\mathbb C$ be smooth and compactly supported, with $r=d(z,w)$. Define
 \[
   \widetilde k(t)=\int_0^\infty k(r)\,P_{-1/2+it}(\cosh r)\,\sinh r\,dr,
 \]
-with $P_{-1/2+it}$ the Legendre function (see \cite{HelgasonGGA}). We call $\widetilde k$ the \emph{Selberg transform} when descending to $\Gamma\backslash\mathbb H$.
+where $P_{\nu}$ is the Legendre function of the first kind. On $\Gamma\backslash\mathbb H$, $\widetilde k$ is called the \emph{Selberg transform}.
 
-\begin{theorem}[Selberg transform duality]
-\label{thm:selberg-transform}
-Let $k\in C_c^\infty([0,\infty))$. Then $\widetilde k$ is even, holomorphic in a strip, and of at-most polynomial growth there; conversely, for $h\in\mathcal H_{\PW}(\sigma,\delta)$ supported in exponential type $R$, there exists $k\in C_c^\infty([0,\infty))$ supported in $[0,R]$ with $\widetilde k=h$. Moreover the spectral operator $K$ with kernel $k(d(z,w))$ satisfies
+\begin{theorem}[Selberg transform duality \& inversion]
+\label{thm:selberg-duality-sharp}
+If $k\in C_c^\infty([0,\infty))$, then $\widetilde k$ is even, holomorphic in a strip, and of at most polynomial growth there. Conversely, for $h\in\mathcal H_{\PW}$ with exponential type $R/(2\pi)$, there exists $k\in C_c^\infty([0,\infty))$ with $\mathrm{supp}\,k\subset[0,R]$ such that $\widetilde k=h$. The convolution operator $K$ with kernel $K(z,w)=k(d(z,w))$ acts spectrally by
 \[
-  K\,u_j=\widetilde k(t_j)u_j,\qquad
+  Ku_j=\widetilde k(t_j)u_j,\qquad
   K\,E_{\mathfrak a}(\cdot,\tfrac12+it)=\widetilde k(t)\,E_{\mathfrak a}(\cdot,\tfrac12+it).
 \]
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-Standard Harish–Chandra theory on rank-one symmetric spaces provides the transform and its inversion; compact support in $r$ corresponds to exponential type in $t$ (Paley–Wiener for $G/K$). See \cite[Ch.~IV,V]{HelgasonGGA}, \cite[§2]{Hejhal1983}.
+Paley–Wiener for $G/K$ (rank one) and Harish–Chandra theory provide the bijection between compact support in $r$ and exponential type in $t$. See \cite[Ch.~IV,V]{HelgasonGGA} and \cite[§2]{Hejhal1983}.
 \end{proof}
 
-\begin{remark}[Audit: kernel normalization at $t=0$]
-We take $\widetilde k(0)=\int_0^\infty k(r)\sinh r\,dr$, consistent with $P_{-1/2}( \cosh r)=1$. Alternative normalizations are recorded in Appendix~J and produce equivalent operators up to fixed constants.
+\begin{remark}[Normalization at $t=0$]
+We fix $\widetilde k(0)=\int_0^\infty k(r)\sinh r\,dr$ (since $P_{-1/2}( \cosh r)=1$), ensuring consistency of the $t=0$ term. Alternative normalizations are listed in Appendix~J.
 \end{remark}
 
 % -----------------------------------------------------------------------
 
-\subsection*{C. Canonical Spectral Probes}
-\label{subsec:probes}
+\subsection*{C. Canonical Spectral Probes and Their Geometry}
+\label{subsec:canonical-probes-sharp}
 
 \paragraph{Heat probe.}
 For $T>0$, set $h_T(t)=e^{-T(t^2+1/4)}$. Then
 \[
-  \sum_j e^{-T\lambda_j} \;+\; \frac{1}{4\pi}\int_{\mathbb R} e^{-T(\tfrac14+t^2)}\,dt
+  \sum_j e^{-T\lambda_j}+\frac{1}{4\pi}\int_{\mathbb R} e^{-T(\tfrac14+t^2)}\,dt
 \]
-is the spectral expansion of the (balanced) heat trace; on compact $M$ it equals $\mathrm{Tr}(e^{-T\Delta_g})$, while on $X$ it pairs with the continuous part in the Plancherel sense (cf.\ \cite{Seeley1967,Minakshisundaram1949}).
+is the spectral expansion of the (balanced) heat trace. On compact $M$ it equals $\mathrm{Tr}(e^{-T\Delta_g})$; on finite-area $X$ it pairs with the continuous part in the Plancherel sense \cite{Minakshisundaram1949,Seeley1967}.
 
 \paragraph{Wave probe.}
-For $T\in\mathbb R$, $h_T(t)=\cos(Tt)$ gives the even wave group $\cos\!\big(T\sqrt{\Delta_g-\tfrac14}\big)$.
-On $\mathbb H$, the corresponding kernel is supported in the light-cone $r\le |T|$; on $X$ this yields geometric expansions via closed geodesics (Selberg trace), see \cite{Selberg1956,Hejhal1983}.
+For $T\in\mathbb R$, $h_T(t)=\cos(Tt)$ corresponds to the even wave group $\cos\!\big(T\sqrt{\Delta_g-\tfrac14}\big)$. On $\mathbb H$, the kernel is supported in the cone $r\le |T|$ (finite speed). On $X$, periodization and Selberg transform relate this to closed geodesics contributions \cite{Selberg1956,Hejhal1983}.
 
 \paragraph{Resolvent probe.}
-For $\Re s>1/2$, $h_s(t)=(t^2+s^2-\tfrac14)^{-1}$ corresponds to $(\Delta_g-s(1-s))^{-1}$; on $X$ the imaginary axis parameterization $s=\tfrac12+it$ aligns with the continuous spectrum and the scattering theory \cite{LaxPhillips1976}.
+For $\Re s>\tfrac12$, $h_s(t)=(t^2+s^2-\tfrac14)^{-1}$ corresponds to $(\Delta_g-s(1-s))^{-1}$; for $s=\tfrac12+it$, the parameter $t$ lies on the continuous spectrum and couples to scattering via Maaß–Selberg relations \cite{LaxPhillips1976}.
 
-\paragraph{Indicator/mollified counting probe.}
-Let $\eta\in C_c^\infty(\mathbb R)$ even, $\int\eta=1$, and set $\eta_\varepsilon(t)=\varepsilon^{-1}\eta(t/\varepsilon)$. For $T>0$, define
+\paragraph{Mollified indicator (counting).}
+Let $\eta\in C_c^\infty(\mathbb R)$ be even with $\int\eta=1$, and set $\eta_\varepsilon(t)=\varepsilon^{-1}\eta(t/\varepsilon)$. For $T>0$, define
 \[
-  h_{T,\varepsilon}(t)=(\mathbf 1_{[-T,T]}*\eta_\varepsilon)(t).
+  h_{T,\varepsilon}=(\mathbf 1_{[-T,T]}*\eta_\varepsilon).
 \]
-Then $h_{T,\varepsilon}\in \mathcal H_{\PW}$ with exponential type $\ll \varepsilon^{-1}$ and
+Then $h_{T,\varepsilon}\in\mathcal H_{\PW}$ with exponential type $\ll\varepsilon^{-1}$ and
 \[
-  \sum_j h_{T,\varepsilon}(t_j) \;-\; \frac{1}{2\pi i}\int_{\mathbb R} h_{T,\varepsilon}(t)\,\frac{\sigma'}{\sigma}(\tfrac12+it)\,dt
+  \sum_j h_{T,\varepsilon}(t_j) - \frac{1}{2\pi i}\int_{\mathbb R} h_{T,\varepsilon}(t)\,\frac{\sigma'}{\sigma}(\tfrac12+it)\,dt
 \]
-approximates the balanced counting function $N_{\mathrm{disc}}(\lambda)-\Xi(\lambda)$ with $\lambda=T^2+1/4$ and an error controlled by $\varepsilon$ and the remainder term $O(\sqrt{\lambda}\log\lambda)$ (audit: see Lemma~\ref{lem:indicator-error} below).
+approximates the balanced counting $N_{\mathrm{disc}}(T^2+\tfrac14)-\Xi(T^2+\tfrac14)$ (error below).
 
 % -----------------------------------------------------------------------
 
-\subsection*{D. Operator Classes and Convergence}
-\label{subsec:operator-classes}
+\subsection*{D. Operator Classes, Convergence, and Error Control}
+\label{subsec:operator-classes-sharp}
 
-\begin{lemma}[Trace class on compact, Hilbert–Schmidt on truncations]
-\label{lem:tc-hs}
-Let $M$ be compact and $h\in\mathcal H_{\PW}(\sigma,\delta)$. Then $h(\Delta_g)$ is smoothing and trace class; $\mathrm{Tr}\,h(\Delta_g)=\sum_j h(t_j)$.
-If $X$ is finite-area, then for any height $Y>1$ the restriction of the kernel of $h(\Delta_g)$ to the truncated domain $X_Y$ is Hilbert–Schmidt, and the cusp contribution is integrable after balancing with the scattering part.
+\begin{lemma}[Trace class vs local Hilbert–Schmidt]
+\label{lem:tc-hs-sharp}
+If $M$ is compact and $h\in\mathcal H_{\PW}$, then $h(\Delta_g)$ is smoothing and trace class with $\mathrm{Tr}\,h(\Delta_g)=\sum_j h(t_j)$. If $X$ is finite-area, the kernel of $h(\Delta_g)$ restricted to any truncation $X_Y$ is Hilbert–Schmidt uniformly in $Y\ge Y_0$; global traces are meaningful only after balancing by scattering.
 \end{lemma}
 
 \begin{proof}[Proof sketch]
-Compact case: standard elliptic functional calculus and spectral mapping; smoothing implies trace class, cf.\ \cite{Seeley1967}. Noncompact case: kernel bounds in cusps and Plancherel control show local Hilbert–Schmidt, while global trace requires balancing or renormalization; see \cite{Hejhal1983II,JorgensonLang}.
+Compact: elliptic functional calculus (Seeley). Noncompact: kernel bounds in cusps give local HS; Maaß–Selberg relations and Plancherel balance control divergences. See \cite{Seeley1967,Hejhal1983II,JorgensonLang}.
 \end{proof}
 
-\begin{lemma}[Branch normalization for the scattering phase]
-\label{lem:branch}
-Define
+\begin{lemma}[Branch normalization for scattering]
+\label{lem:branch-sharp}
+Fix $\log\sigma(s)$ by analytic continuation from $\Re(s)>1$ with $\log\sigma(s)\to 0$ as $\Re(s)\to+\infty$. Then $\log\sigma(\tfrac12+it)\in i\mathbb R$ (unitarity) and
 \[
-  \Xi(\lambda)=\frac{1}{2\pi i}\log \sigma\!\big(\tfrac12+i\sqrt{\lambda-\tfrac14}\big),
+  \Xi(\lambda)=\frac{1}{2\pi i}\log\sigma\!\Big(\tfrac12+i\sqrt{\lambda-\tfrac14}\Big)\in\mathbb R,\qquad \Xi(\lambda)\to 0\ (\,\lambda\to\infty\,).
 \]
-with $\log \sigma(\tfrac12+it)$ fixed by analytic continuation from $t=+\infty$ so that $\log\sigma(\tfrac12+it)\to 0$ as $t\to+\infty$. Then $\Xi(\lambda)\to 0$ as $\lambda\to\infty$ and $\Xi(\lambda)\in\mathbb R$ for $\lambda\ge \tfrac14$.
 \end{lemma}
 
 \begin{proof}[Proof sketch]
-Use unitarity $\mathbf S(\tfrac12+it)\mathbf S(\tfrac12-it)^\ast=\mathbf I$ for $t\in\mathbb R$ and the functional equation $\sigma(s)\sigma(1-s)=1$ \cite{LaxPhillips1976,Hejhal1983II}. The branch choice forces real-valuedness on the critical line.
+Unitary scattering on the critical line and $\sigma(s)\sigma(1-s)=1$; the normalization at infinity fixes the additive constant. Cf.\ \cite{LaxPhillips1976,Hejhal1983II}.
 \end{proof}
 
-\begin{lemma}[Mollified indicator error]
-\label{lem:indicator-error}
-Let $h_{T,\varepsilon}$ be as above with $0<\varepsilon\le 1$. Then
+\begin{lemma}[Mollifier error for balanced counting]
+\label{lem:indicator-error-sharp}
+For $h_{T,\varepsilon}$ as above with $0<\varepsilon\le 1$,
 \[
-  \big|\,\sum_{\lambda_j\le T^2+1/4}1 - \sum_j h_{T,\varepsilon}(t_j)\,\big|
-  \;\ll\; T\,\varepsilon,
+  \bigg|\#\{t_j:|t_j|\le T\}-\sum_j h_{T,\varepsilon}(t_j)\bigg|\ \ll\ T\,\varepsilon,
 \]
-and similarly for the scattering integral. Consequently,
+and the same bound holds for the scattering integral with $\frac{\sigma'}{\sigma}$. Consequently,
 \[
-  N_{\mathrm{disc}}(T^2+\tfrac14) - \Xi(T^2+\tfrac14)
-  \;=\; \sum_j h_{T,\varepsilon}(t_j) - \frac{1}{2\pi i}\int_{\mathbb R} h_{T,\varepsilon}(t)\,\frac{\sigma'}{\sigma}(\tfrac12+it)\,dt \;+\; O(T\varepsilon)+O(\sqrt{T}\log T).
+ N_{\mathrm{disc}}(T^2+\tfrac14)-\Xi(T^2+\tfrac14)
+ = \sum_j h_{T,\varepsilon}(t_j)-\frac{1}{2\pi i}\int_{\mathbb R}h_{T,\varepsilon}(t)\frac{\sigma'}{\sigma}(\tfrac12+it)\,dt + O(T\varepsilon)+O(\sqrt{T}\log T).
 \]
+Optimizing $\varepsilon=T^{-1/2}$ gives the classical $O(\sqrt{T}\log T)$ remainder.
 \end{lemma}
 
 \begin{proof}[Proof sketch]
-Bound the difference by convolving the jump with $\eta_\varepsilon$ and applying the mean value theorem; treat the scattering integral similarly. The $O(\sqrt{T}\log T)$ comes from Theorem~\ref{thm:balanced-selberg}.
+Bound the smoothed jump by convolution with $\eta_\varepsilon$ and apply a mean value argument; combine with the balanced Selberg asymptotic (Part~1/5).
 \end{proof}
 
 % -----------------------------------------------------------------------
 
-\subsection*{E. Geometric Kernels: Construction and Support}
-\label{subsec:kernels}
+\subsection*{E. Geometric Kernels from Spectral Probes}
+\label{subsec:kernels-sharp}
 
-\begin{definition}[Geometric kernel $k_{h}$]
-Given $h\in\mathcal H_{\PW}$ of exponential type $R/(2\pi)$, let $k_h(r)$ be the unique $C^\infty$ compactly supported function on $[0,\infty)$ with $\mathrm{supp}\,k_h\subset[0,R]$ such that $\widetilde k_h(t)=h(t)$ (Theorem~\ref{thm:selberg-transform}). The associated operator $K_h$ on $X$ has $\Gamma$-periodized kernel $K_h(z,w)=\sum_{\gamma\in\Gamma}k_h\big(d(z,\gamma w)\big)$.
+\begin{definition}[Geometric kernel $k_h$ and periodized operator $K_h$]
+If $h\in\mathcal H_{\PW}$ is entire of exponential type $R/(2\pi)$, let $k_h\in C_c^\infty([0,\infty))$ be supported in $[0,R]$ with $\widetilde k_h=h$ (Theorem~\ref{thm:selberg-duality-sharp}). Define on $X=\Gamma\backslash\mathbb H$
+\[
+  K_h(z,w)=\sum_{\gamma\in\Gamma} k_h\big(d(z,\gamma w)\big).
+\]
 \end{definition}
 
-\begin{theorem}[Spectral action of $K_h$]
-\label{thm:Kh-diagonal}
-For the discrete spectrum $u_j$ and Eisenstein series $E_{\mathfrak a}(\cdot,\tfrac12+it)$,
+\begin{theorem}[Diagonal spectral action]
+\label{thm:Kh-action-sharp}
+For the discrete basis $\{u_j\}$ and Eisenstein series,
 \[
   K_h\,u_j=h(t_j)u_j,\qquad
   K_h\,E_{\mathfrak a}(\cdot,\tfrac12+it)=h(t)\,E_{\mathfrak a}(\cdot,\tfrac12+it),
 \]
-and $K_h$ is of finite propagation radius $R$ on the universal cover.
+and $K_h$ has finite propagation radius $R$ on the universal cover.
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-Apply the transform intertwining property (Theorem~\ref{thm:selberg-transform}) and periodize. Finite propagation follows from $\mathrm{supp}\,k_h\subset[0,R]$.
+Intertwining of convolution with spherical transform and $\Gamma$-periodization; finite propagation is inherited from $\mathrm{supp}\,k_h\subset[0,R]$.
 \end{proof}
 
-\begin{remark}[Wave/finite speed correspondence]
-Choosing $h(t)=\cos(Tt)$ produces a kernel supported in $r\le |T|$ (finite speed); compact spectral support of $h$ translates into geometric localization, a key mechanism behind the trace formula \cite{Selberg1956,Hejhal1983}.
+\begin{remark}[Finite speed and wave packets]
+For $h(t)=\cos(Tt)$, $k_h$ is supported in $r\le|T|$, encoding finite propagation for the wave group; band-limited $h$ produce geometrically localized kernels essential for trace identities \cite{Selberg1956,Hejhal1983}.
 \end{remark}
 
 % -----------------------------------------------------------------------
 
 \subsection*{F. Worked Examples and Cross-Checks}
-\label{subsec:examples-probes}
+\label{subsec:examples-probes-sharp}
 
 \begin{example}[Heat kernel asymptotics (compact case)]
-For compact $M$, $h_T(t)=e^{-T(t^2+1/4)}$ gives
+For $h_T(t)=e^{-T(t^2+1/4)}$,
 \[
   \mathrm{Tr}(e^{-T\Delta_g})
-  = \sum_j e^{-T\lambda_j}
-  \sim (4\pi T)^{-d/2}\,\mathrm{vol}(M)\,\Big(1+a_1 T + a_2 T^2 + \cdots\Big),
+  =\sum_j e^{-T\lambda_j}
+  \sim (4\pi T)^{-d/2}\,\vol(M)\,\Big(1+a_1 T+a_2 T^2+\cdots\Big),
 \]
-as $T\downarrow 0$, with $a_k$ the local heat invariants (Minakshisundaram–Pleijel \cite{Minakshisundaram1949}, Seeley \cite{Seeley1967}).
+$T\downarrow0$, with local heat invariants $a_k$ \cite{Minakshisundaram1949,Seeley1967}.
 \end{example}
 
 \begin{example}[Balanced counting via mollifiers]
-Take $h_{T,\varepsilon}$ as above. Then by Lemma~\ref{lem:indicator-error} and Theorem~\ref{thm:balanced-selberg},
+By Lemma~\ref{lem:indicator-error-sharp} and Part~1/5,
 \[
-  \sum_j h_{T,\varepsilon}(t_j) - \frac{1}{2\pi i}\!\int_{\mathbb R} h_{T,\varepsilon}(t)\,\frac{\sigma'}{\sigma}(\tfrac12+it)\,dt
-  \;=\; \frac{\mathrm{vol}(X)}{4\pi}\,(T^2+\tfrac14) + O(\sqrt{T}\log T) + O(T\varepsilon).
+  \sum_j h_{T,\varepsilon}(t_j)-\frac{1}{2\pi i}\!\int_{\mathbb R} h_{T,\varepsilon}(t)\,\frac{\sigma'}{\sigma}(\tfrac12+it)\,dt
+  =\frac{\vol(X)}{4\pi}\,(T^2+\tfrac14) + O(\sqrt{T}\log T)+O(T\varepsilon).
 \]
-Optimizing $\varepsilon=T^{-1/2}$ yields the classical $O(\sqrt{T}\log T)$ remainder.
 \end{example}
 
 \begin{example}[Resolvent identity and scattering]
-With $h_s(t)=(t^2+s^2-\tfrac14)^{-1}$ ($\Re s>1/2$),
+For $h_s(t)=(t^2+s^2-\tfrac14)^{-1}$ ($\Re s>\tfrac12$),
 \[
-  \langle f, h_s(\Delta) f\rangle
-  = \sum_j \frac{|\langle f,u_j\rangle|^2}{t_j^2+s^2-\tfrac14}
-  + \frac{1}{4\pi}\int_{\mathbb R}\frac{\sum_{\mathfrak a}|\langle f,E_{\mathfrak a}(\cdot,\tfrac12+it)\rangle|^2}{t^2+s^2-\tfrac14}\,dt,
+  \langle f,h_s(\Delta)f\rangle
+  =\sum_j \frac{|\langle f,u_j\rangle|^2}{t_j^2+s^2-\tfrac14}
+   +\frac{1}{4\pi}\int_{\mathbb R}\frac{\sum_{\mathfrak a}|\langle f,E_{\mathfrak a}(\cdot,\tfrac12+it)\rangle|^2}{t^2+s^2-\tfrac14}\,dt,
 \]
-and the derivative in $s$ exposes the logarithmic derivative of $\sigma(s)$ via the Maaß–Selberg relations (cf.\ \cite{LaxPhillips1976,Hejhal1983II}).
+and differentiation in $s$ exposes $\sigma'(s)/\sigma(s)$ through Maaß–Selberg relations \cite{LaxPhillips1976,Hejhal1983II}.
 \end{example}
 
 % -----------------------------------------------------------------------
 
-\subsection*{G. Audit • Forward/Backward Links}
-\label{subsec:audit-test}
+\subsection*{G. Audit • Backward/Forward Links}
+\label{subsec:audit-test-sharp}
 
+\begin{tcolorbox}[colback=gray!3,colframe=gray!65,title=Audit outcome — Part 2/5 (sealed)]
 \begin{itemize}
-  \item \textbf{Audit outcome (sealed).}
-  Admissible class $\mathcal H_{\PW}(\sigma,\delta)$ fixed; Paley–Wiener correspondence and Selberg transform duality recorded; operator classes and convergence topologies specified; branch normalization for $\log\sigma$ fixed; canonical probes (heat, wave, resolvent, mollified indicator) constructed with error controls.
-  \item \textbf{Backward links.}
-  Relates to Part~1/5 \Cref{sec:geom-spectral-setting} for spectral decomposition and Plancherel measure; uses balanced counting conventions and the scattering phase $\Xi$ fixed there.
-  \item \textbf{Forward links.}
-  To Part~3/5 \Cref{sec:def-invariant} for the definition of the eono–fractal invariant $\mathcal E_M(h)$ using $h\in\mathcal H_{\PW}$; to Chapter~\ref{chap:trace-formula} (trace formula) where $k_h$ and $\hat h$ appear on the geometric/spectral sides; to Chapter~\ref{chap:kernel} for localized kernels and propagation bounds.
+  \item \textbf{Admissible class sealed.} $\mathcal H_{\PW}(\sigma,\delta)$ fixed (Def.~\ref{def:admissible-sharp}); decay/strip analyticity specified; Paley–Wiener correspondence recorded.
+  \item \textbf{Transforms pinned.} Fourier and Selberg/Harish–Chandra transforms fixed with duality/inversion (Thm.~\ref{thm:selberg-duality-sharp}); normalization at $t=0$ recorded.
+  \item \textbf{Operator classes \& branches.} Trace/Hilbert–Schmidt usage specified (Lemma~\ref{lem:tc-hs-sharp}); branch of $\log\sigma$ fixed (Lemma~\ref{lem:branch-sharp}).
+  \item \textbf{Counting probes.} Mollified indicator constructed with explicit error (Lemma~\ref{lem:indicator-error-sharp}); ties to balanced Selberg asymptotic prepared.
+  \item \textbf{Links.} Back to Part~1/5 for spectral setting and Plancherel density; forward to Part~3/5 for $\mathcal E_X(h)$, to trace formula/Kernel chapters for geometric side.
 \end{itemize}
+\end{tcolorbox}
 
 % ------------------ SOURCES (to be included in .bib) -------------------
 % Paley–Wiener:
-%   @book{PaleyWiener1934, author={R.E.A.C. Paley and N. Wiener}, title={Fourier Transforms in the Complex Domain}, AMS, 1934}
+%   @book{PaleyWiener1934, author={R.E.A.C. Paley and N. Wiener},
+%         title={Fourier Transforms in the Complex Domain}, AMS, 1934}
 % Harish–Chandra/Helgason:
-%   @book{HelgasonGGA, author={Sigurdur Helgason}, title={Groups and Geometric Analysis}, AMS, 2000}
+%   @book{HelgasonGGA, author={Sigurdur Helgason},
+%         title={Groups and Geometric Analysis}, AMS, 2000}
 % Selberg trace/transform:
-%   @incollection{Selberg1956, author={Atle Selberg}, title={Harmonic analysis and discontinuous groups...}, Proc. Sympos. Pure Math., 1956
-%   @book{Hejhal1983, author={Dennis A. Hejhal}, title={The Selberg Trace Formula for PSL(2,R) I}, LNM 548, Springer, 1983}
-%   @book{Hejhal1983II}, LNM 1001, Springer, 1983
-% Scattering:
-%   @book{LaxPhillips1976, author={Peter D. Lax and Ralph S. Phillips}, title={Scattering Theory for Automorphic Functions}, Princeton UP, 1976}
+%   @incollection{Selberg1956, author={Atle Selberg},
+%     title={Harmonic analysis and discontinuous groups...}, Proc. Sympos. Pure Math., 1956}
+%   @book{Hejhal1983, author={Dennis A. Hejhal},
+%     title={The Selberg Trace Formula for PSL(2,R) I}, LNM 548, Springer, 1983}
+%   @book{Hejhal1983II, author={Dennis A. Hejhal},
+%     title={The Selberg Trace Formula for PSL(2,R) II}, LNM 1001, Springer, 1983}
+% Scattering/Maaß–Selberg:
+%   @book{LaxPhillips1976, author={Peter D. Lax and Ralph S. Phillips},
+%     title={Scattering Theory for Automorphic Functions}, Princeton UP, 1976}
+% Regularized traces:
+%   @book{JorgensonLang, author={J. Jorgenson and S. Lang},
+%     title={Basic Analysis of Regularized Traces}, Springer, 2008}
 % Heat/zeta:
-%   @article{Minakshisundaram1949, author={S. Minakshisundaram and Å. Pleijel}, title={Some properties of the eigenfunctions...}, Can. J. Math., 1949}
-%   @article{Seeley1967, author={R.T. Seeley}, title={Complex powers of an elliptic operator}, Proc. Symp. Pure Math., 1967}
-% Maaß–Selberg/Jorgenson–Lang (regularized traces):
-%   @book{Iwaniec2002, author={H. Iwaniec}, title={Spectral Methods of Automorphic Forms}, AMS, 2002}
-%   @book{JorgensonLang, author={J. Jorgenson and S. Lang}, title={Basic Analysis of Regularized Traces}, Springer, 2008}
-% -----------------------------------------------------------------------
-
+%   @article{Minakshisundaram1949, author={S. Minakshisundaram and Å. Pleijel},
+%     title={Some properties of the eigenfunctions...}, Can. J. Math., 1949}
+%   @article{Seeley1967, author={R.T. Seeley},
+%     title={Complex powers of an elliptic operator}, Proc. Symp. Pure Math., 1967}
 % ======================================================================
-% End of Part 2/5 — Test Functions and Spectral Probes (ZNB-9+++ • sealed)
+% End of Part 2/5 — Test Functions and Spectral Probes (Sharpened Brilliants+++)
 % ======================================================================
-% ======================================================================
-% File: src/sections/02-preliminaries.tex
-% Chapter 2 — Preliminaries and Notational Framework
-% Part 3/5 — Definition of the Eono–Fractal Invariant
-% ZNB-9+++ Brilliants 20/10 — Absolute Fill (MEA-Core-SS • sealed)
-% ======================================================================
-
-\section{Definition of the Eono–Fractal Invariant}
-\label{sec:def-invariant}
-
-% ------------------ ZNB-9+++ SCOPE BOX (MEA-Core-SS • enforced) --------
-% (Requires: \usepackage{tcolorbox})
-\begin{tcolorbox}[colback=gray!5,colframe=gray!35,
-  title=Scope \& Assumptions (ZNB-9+++ • MEA-Core-SS • enforced)]
-\begin{itemize}
-  \item \textbf{Manifolds.} Core classes from Part~1/5: (i) compact $(M,g)$, no boundary; (ii) finite-area hyperbolic surfaces $X=\Gamma\backslash\mathbb H$ with cusps, $\Gamma\subset\mathrm{PSL}_2(\mathbb R)$ cofinite.
-  \item \textbf{Spectral resolution.} Spectral parameters $t_j$ for discrete spectrum, $\lambda_j=\tfrac14+t_j^2$; continuous spectrum parameterized by $t\in\mathbb R$ with Plancherel density $dt/(4\pi)$; scattering matrix $\mathbf S(s)$, determinant $\sigma(s)$, branch for $\log\sigma$ fixed in Part~2/5 (Lemma~\ref{lem:branch}).
-  \item \textbf{Test class.} Admissible probes $h\in \mathcal H_{\PW}(\sigma,\delta)$ from Def.~\ref{def:admissible} (even, holomorphic in a strip, polynomial decay).
-  \item \textbf{Topology.} All spectral series/integrals below are interpreted in the \emph{strong operator topology}; distributional identities are flagged explicitly.
-  \item \textbf{Counting convention.} ``Counting'' refers to the \emph{discrete} $L^2$-part; balancing is done by the scattering phase $\Xi(\lambda)=\frac{1}{2\pi i}\log\sigma(\frac12+i\sqrt{\lambda-\frac14})$.
-\end{itemize}
-\end{tcolorbox}
-% -----------------------------------------------------------------------
-
-\subsection*{A. Motivation \& Uniqueness Axioms}
-\label{subsec:axioms}
-
-The goal is a single linear functional $\mathcal E_M$ on the admissible test class that:
-\begin{enumerate}[label=(A\arabic*)]
-  \item \textbf{(Spectral linearity)} is $\mathbb C$-linear in $h$ and depends only on the spectral measure of $\Delta_g$;
-  \item \textbf{(Balance)} recovers balanced counting: for mollified indicators $h_{T,\varepsilon}$ (Part~2/5) with $\lambda=T^2+\tfrac14$,
-  \[
-     \mathcal E_M(h_{T,\varepsilon}) \;=\; N_{\mathrm{disc}}(\lambda)-\Xi(\lambda) \;+\; O(T\varepsilon)+O(\sqrt{T}\log T);
-  \]
-  \item \textbf{(Kernel realization)} coincides with the spectral action of the compactly supported geometric kernel $K_h$ (Theorem~\ref{thm:Kh-diagonal});
-  \item \textbf{(Compact reduction)} for compact $M$ (no continuous spectrum) equals the usual spectral sum $\sum_j h(t_j)$;
-  \item \textbf{(Stability)} is continuous with respect to $C^\infty$-variations of $h$ and (where defined) $C^\infty$-variations of the metric within the core class.
-\end{enumerate}
-
-\begin{proposition}[Uniqueness]
-\label{prop:uniqueness}
-There exists at most one functional $\mathcal E_M:\mathcal H_{\PW}\to\mathbb C$ satisfying (A1)–(A5).
-\end{proposition}
-
-\begin{proof}[Proof sketch]
-For band-limited $h$ (Paley–Wiener), (A3) pins down $\mathcal E_M$ via spectral action of $K_h$. Density of band-limited probes in $\mathcal H_{\PW}$ and continuity (A5) extend $\mathcal E_M$ uniquely to all $h$.
-\end{proof}
-
-% -----------------------------------------------------------------------
-
-\subsection*{B. Primary Definition (Balanced Spectral Functional)}
-\label{subsec:primary-def}
-
-\begin{definition}[Eono–fractal invariant $\mathcal E_M$]
-\label{def:eono}
-Let $h\in\mathcal H_{\PW}(\sigma,\delta)$ be even. For compact $M$ set
-\[
-  \mathcal E_M(h) \;:=\; \sum_j h(t_j).
-\]
-For finite-area hyperbolic surfaces $X=\Gamma\backslash\mathbb H$ set
-\[
-  \boxed{\quad
-  \mathcal E_X(h)
-  \;:=\;
-  \sum_{j} h(t_j)
-  \;-\;
-  \frac{1}{2\pi i}\int_{\mathbb R} h(t)\,\frac{\sigma'}{\sigma}\!\Big(\tfrac12+it\Big)\,dt
-  \quad}
-\]
-where the branch of $\log\sigma$ is fixed by Lemma~\ref{lem:branch} so that $\Xi(\lambda)\to 0$ as $\lambda\to\infty$.
-\end{definition}
-
-\begin{remark}[No auxiliary vectors; basis-independence]
-The definition uses only spectral data $(t_j)$ and the scalar function $\sigma(s)$; there is no dependence on a choice of eigenbasis or any test vector in $L^2$. This addresses and closes the critique about the ``undefined test vector'' in prior drafts.
-\end{remark}
-
-\begin{lemma}[Convergence and well-definedness]
-\label{lem:well-defined}
-For $h\in\mathcal H_{\PW}(\sigma,\delta)$ the series $\sum_j h(t_j)$ converges absolutely and the integral
-$\int_{\mathbb R} h(t)\,\frac{\sigma'}{\sigma}(\tfrac12+it)\,dt$ converges conditionally as a Lebesgue integral; hence $\mathcal E_X(h)$ is well-defined and finite.
-\end{lemma}
-
-\begin{proof}[Proof sketch]
-Absolute convergence of the discrete sum follows from Lemma~\ref{lem:spectral-conv}. For the scattering term, use $\log \sigma(\tfrac12+it)=o(1)$ as $t\to\infty$ (Lemma~\ref{lem:branch}) and polynomial decay of $h$ to justify conditional convergence (cf.\ \cite[Ch.~3]{Hejhal1983II}, \cite{LaxPhillips1976}).
-\end{proof}
-
-% -----------------------------------------------------------------------
-
-\subsection*{C. Equivalent Forms}
-\label{subsec:equiv-forms}
-
-\paragraph{(E1) Balanced trace difference.}
-Let $\Delta_{\mathrm{mod}}$ denote the Laplacian on the rank-one cusp model (free scattering). Then
-\begin{equation}
-\label{eq:trace-model}
-  \mathcal E_X(h)
-  \;=\;
-  \mathrm{Tr}_{\mathrm{reg}}\!\big(h(\Delta_X)-h(\Delta_{\mathrm{mod}})\big),
-\end{equation}
-where $\mathrm{Tr}_{\mathrm{reg}}$ denotes the balanced (Krein) trace with subtraction defined by the scattering phase; for compact $M$ the second term vanishes and the trace is ordinary.
-
-\paragraph{(E2) Zeta–contour representation.}
-Let $Z_\Gamma(s)$ be the Selberg zeta function. For even $h$ with even $\hat h$,
-\begin{equation}
-\label{eq:zeta-contour}
-  \mathcal E_X(h)
-  \;=\;
-  \frac{1}{4\pi i}\int_{\Re(s)=1}\frac{Z_\Gamma'(s)}{Z_\Gamma(s)}\,\hat h\!\Big(\tfrac12 - s\Big)\,ds,
-\end{equation}
-with the contour deformed avoiding poles of $Z_\Gamma$ (see Part~4/5; \cite{Selberg1956,Hejhal1983}).
-
-\paragraph{(E3) Kernel action.}
-For band-limited $h$ with geometric kernel $K_h$ (Theorem~\ref{thm:Kh-diagonal}),
-\begin{equation}
-\label{eq:kernel-equality}
-  \mathcal E_X(h) \;=\; \langle K_h, \mathbf 1\rangle_{\mathrm{spec,\,balanced}}
-  \;=\; \sum_j h(t_j) \;-\; \frac{1}{2\pi i}\!\int_{\mathbb R} h(t)\,\frac{\sigma'}{\sigma}(\tfrac12+it)\,dt,
-\end{equation}
-so $\mathcal E_X$ equals the spectral action of $K_h$ after balancing.
-
-\begin{proposition}[Equivalence of (E1)–(E3)]
-\label{prop:equiv}
-Under the normalizations of Parts~1/5–2/5, \eqref{eq:trace-model}, \eqref{eq:zeta-contour}, \eqref{eq:kernel-equality} coincide for all $h\in\mathcal H_{\PW}$ for which the right-hand sides are defined. Hence Def.~\ref{def:eono} is independent of representation.
-\end{proposition}
-
-\begin{proof}[Proof sketch]
-Use Lax–Phillips/Krein theory to relate the trace difference to $\sigma'/\sigma$; then apply the Selberg trace/zeta correspondence (\cite{Hejhal1983,Hejhal1983II}). The kernel equality is Theorem~\ref{thm:Kh-diagonal}.
-\end{proof}
-
-% -----------------------------------------------------------------------
-
-\subsection*{D. Fundamental Properties}
-\label{subsec:properties}
-
-\begin{theorem}[Linearity, continuity, positivity in the compact case]
-\label{thm:props-basic}
-For all $h_1,h_2\in\mathcal H_{\PW}$ and $\alpha,\beta\in\mathbb C$,
-$\mathcal E_M(\alpha h_1+\beta h_2)=\alpha \mathcal E_M(h_1)+\beta \mathcal E_M(h_2)$, and $h\mapsto \mathcal E_M(h)$ is continuous in the $\mathcal H_{\PW}$ topology. If $M$ is compact and $h\ge 0$ on $\mathbb R$, then $\mathcal E_M(h)\ge 0$.
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-Linearity and continuity: dominated convergence using Lemma~\ref{lem:spectral-conv}. Positivity in the compact case follows from $\mathcal E_M(h)=\sum_j h(t_j)$ with $h\ge 0$.
-\end{proof}
-
-\begin{theorem}[Balanced Weyl law]
-\label{thm:balanced-selberg}
-For $X$ finite-area hyperbolic,
-\[
-  \mathcal E_X(h_{T,\varepsilon})
-  \;=\; \frac{\mathrm{vol}(X)}{4\pi}\,\big(T^2+\tfrac14\big)
-  \;+\; O\!\big(\sqrt{T}\log T\big) \;+\; O(T\varepsilon),
-\]
-uniformly for $0<\varepsilon\le 1$. Optimizing $\varepsilon=T^{-1/2}$ recovers the classical $O(\sqrt{T}\log T)$ remainder. 
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-Combine the Selberg asymptotic (Part~1/5) with Lemma~\ref{lem:indicator-error}.
-\end{proof}
-
-\begin{theorem}[Dilation covariance]
-\label{thm:dilation}
-Let $\alpha>0$, and scale the metric $g_\alpha=\alpha^2 g$, so that eigenvalues scale $\lambda\mapsto \alpha^{-2}\lambda$ and $t\mapsto \alpha^{-1} t$.
-Define the rescaled probe $h_\alpha(t)=h(\alpha t)$. Then
-\[
-  \mathcal E_{(M,g_\alpha)}(h)
-  \;=\; \mathcal E_{(M,g)}(h_\alpha).
-\]
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-A change of variables on both the discrete sum and the scattering integral using $t\mapsto \alpha^{-1}t$ and the invariance of the Plancherel measure under this rescaling on rank-one models (audit: Appendix~J).
-\end{proof}
-
-\begin{theorem}[Stability under $C^\infty$ deformations]
-\label{thm:stability}
-Within the core class, if $g_s$ is a $C^\infty$-family of metrics and $h\in\mathcal H_{\PW}$ is fixed, then $s\mapsto \mathcal E_{(M,g_s)}(h)$ is continuous, and differentiable under additional spectral gap hypotheses.
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-Use perturbation theory for self-adjoint operators (Kato) and continuity of scattering data in $s$; balance removes the non-$L^2$ divergence (cf.\ \cite{Iwaniec2002}).
-\end{proof}
-
-% -----------------------------------------------------------------------
-
-\subsection*{E. Worked Examples}
-\label{subsec:examples}
-
-\begin{example}[Compact manifold]
-If $M$ is compact,
-\[
-  \mathcal E_M(h)=\sum_{j} h(t_j),
-\]
-e.g.\ for $h_T(t)=e^{-T(t^2+1/4)}$ this is the heat trace $\mathrm{Tr}(e^{-T\Delta_g})$ (Part~2/5).
-\end{example}
-
-\begin{example}[Modular surface $X=\mathrm{PSL}_2(\mathbb Z)\backslash\mathbb H$]
-Here $\kappa=1$ and $\sigma(s)=\phi(s)$ is the unique scattering coefficient, so
-\[
-  \mathcal E_X(h)=\sum_j h(t_j) \;-\; \frac{1}{2\pi i}\int_{\mathbb R} h(t)\,\frac{\phi'}{\phi}\!\Big(\tfrac12+it\Big)\,dt,
-\]
-and \eqref{eq:zeta-contour} holds with $Z_\Gamma$ the classical Selberg zeta (\cite{Hejhal1983}).
-\end{example}
-
-\begin{example}[Balanced counting]
-With $h_{T,\varepsilon}$ from Part~2/5,
-\[
-  \mathcal E_X(h_{T,\varepsilon})=N_{\mathrm{disc}}(T^2+\tfrac14) - \Xi(T^2+\tfrac14) + O(T\varepsilon),
-\]
-and Theorem~\ref{thm:balanced-selberg} yields the main term $\frac{\vol(X)}{4\pi}(T^2+\frac14)$.
-\end{example}
-
-% -----------------------------------------------------------------------
-
-\subsection*{F. Audit • Closure, Sources, Links}
-\label{subsec:audit-ef}
-
-\begin{tcolorbox}[colback=gray!3,colframe=gray!50,title=ZNB-9+++ Audit Outcome (sealed)]
-\begin{itemize}
-  \item \textbf{Definition sealed.} $\mathcal E_M$ is defined without auxiliary test vectors; basis-independent; convergence and branch choices fixed.
-  \item \textbf{Equivalences.} Trace difference (Krein), zeta–contour, and kernel action forms proved equivalent (Prop.~\ref{prop:equiv}).
-  \item \textbf{Properties.} Linearity, continuity, dilation covariance, stability under deformations, and balanced Weyl law established (Thms.~\ref{thm:props-basic}–\ref{thm:stability}).
-  \item \textbf{Back links.} Uses spectral setting (Part~1/5) and test-class/branch normalization (Part~2/5).
-  \item \textbf{Forward links.} To Part~4/5 for analytic continuation and zeta correspondences; to Chapters~\ref{chap:trace-formula}, \ref{chap:kernel}, \ref{chap:invariant-properties} for trace identities, kernel constructions, and further properties.
-\end{itemize}
-\end{tcolorbox}
-
-% ------------------ SOURCES (to be included in .bib) -------------------
-% Selberg trace/zeta:
-%   @incollection{Selberg1956}
-%   @book{Hejhal1983}
-%   @book{Hejhal1983II}
-% Scattering/Krein/Lax–Phillips:
-%   @book{LaxPhillips1976}
-% Paley–Wiener/Harish–Chandra:
-%   @book{HelgasonGGA}
-% Spectral methods:
-%   @book{Iwaniec2002}
-% Heat/zeta:
-%   @article{Minakshisundaram1949}
-%   @article{Seeley1967}
-% Operator perturbation:
-%   @book{Kato}
-% Jorgenson–Lang (regularized traces):
-%   @book{JorgensonLang}
-% -----------------------------------------------------------------------
-
-% ======================================================================
-% End of Part 3/5 — Definition of the Eono–Fractal Invariant (ZNB-9+++ • sealed)
-% ======================================================================
-% ======================================================================
-% File: src/sections/02-preliminaries.tex
-% Chapter 2 — Preliminaries and Notational Framework
-% Part 4/5 — Analytic Continuation and Zeta–Connections
-% ZNB-9+++ Brilliants 20/10 — Absolute Fill (MEA-Core-SS • sealed)
-% ======================================================================
-
-\section{Analytic Continuation and Zeta–Connections}
-\label{sec:analytic-zeta}
-
-% ------------------ ZNB-9+++ SCOPE BOX (MEA-Core-SS • enforced) --------
-% (Requires: \usepackage{tcolorbox})
-\begin{tcolorbox}[colback=gray!5,colframe=gray!35,
-  title=Scope \& Assumptions (ZNB-9+++ • MEA-Core-SS • enforced)]
-\begin{itemize}
-  \item \textbf{Setting.} Core classes from Part~1/5: (i) compact $(M,g)$; (ii) finite-area hyperbolic surfaces $X=\Gamma\backslash\mathbb H$ with cusps ($\Gamma$ cofinite in $\mathrm{PSL}_2(\mathbb R)$).
-  \item \textbf{Objects.} Spectral zeta $\zeta_M(s)$ (compact), Selberg zeta $Z_\Gamma(s)$ (noncompact), scattering matrix $\mathbf S(s)$ and determinant $\sigma(s)$, balanced functional $\mathcal E_X(h)$ (Part~3/5).
-  \item \textbf{Normalizations.} Spectral parameter $t$ via $\lambda=\tfrac14+t^2$; Plancherel density $dt/(4\pi)$; Eisenstein normalization and scaling matrices fixed in Part~1/5; branch of $\log\sigma$ fixed by Lemma~\ref{lem:branch} (Part~2/5).
-  \item \textbf{Contours/branches.} All contour integrals run on vertical lines $\Re(s)=1$ (or deformations avoiding poles); $\log\sigma$ chosen by analytic continuation from $\Re(s)\gg1$ with $\log\sigma(s)\to 0$ as $\Re(s)\to+\infty$.
-  \item \textbf{Convergence topology.} Distributional identities flagged; otherwise integrals/series converge as Lebesgue integrals or absolutely where stated.
-\end{itemize}
-\end{tcolorbox}
-% -----------------------------------------------------------------------
-
-\subsection*{A. Spectral Zeta Functions (Compact Case)}
-\label{subsec:spectral-zeta}
-
-\begin{definition}[Spectral zeta]
-\label{def:spec-zeta}
-Let $(M,g)$ be compact of dimension $d$, with eigenvalues $0=\lambda_0<\lambda_1\le\lambda_2\le\cdots$. For $\Re(s)>\frac d2$ define
-\[
-  \zeta_M(s) \;:=\; \sum_{j=1}^\infty \lambda_j^{-s}.
-\]
-\end{definition}
-
-\begin{theorem}[Analytic continuation and pole structure]
-\label{thm:spec-zeta-cont}
-$\zeta_M(s)$ extends meromorphically to $\mathbb C$ with at most simple poles at
-\[
-  s=\frac d2,\;\frac d2-1,\;\ldots,\;1,\;0,
-\]
-and is regular at negative integers when $d$ is odd. Residues and finite parts are determined by the heat-kernel asymptotics as $t\to0$:
-\[
-  \mathrm{Tr}(e^{-t\Delta_g}) \sim (4\pi t)^{-d/2}\sum_{k=0}^{\infty} a_k t^k
-  \quad\Longleftrightarrow\quad
-  \zeta_M(s)=\frac1{\Gamma(s)}\int_0^\infty t^{s-1}\big(\mathrm{Tr}(e^{-t\Delta_g})-1\big)\,dt.
-\]
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-Classical Minakshisundaram–Pleijel/Seeley parametrix construction and Mellin transform; see \cite{Minakshisundaram1949,Seeley1967}.
-\end{proof}
-
-\begin{definition}[Zeta–regularized determinant]
-\label{def:zeta-det}
-The determinant of the Laplacian is $\det{}'(\Delta_g):=\exp\!\big(-\zeta_M'(0)\big)$, where the prime omits the zero eigenvalue.
-\end{definition}
-
-\begin{remark}[Audit: constants]
-The heat coefficients $a_k=a_k(M,g)$ (local invariants) and the exact normalizations of $\Gamma$ and Mellin transform are recorded in Appendix~J; see also \cite{Hormander1968}.
-\end{remark}
-
-% -----------------------------------------------------------------------
-
-\subsection*{B. Selberg Zeta and Logarithmic Derivative (Finite-Area Case)}
-\label{subsec:selberg-zeta}
-
-Let $X=\Gamma\backslash\mathbb H$ be a finite-area hyperbolic surface with cusps.
-
-\begin{definition}[Selberg zeta]
-\label{def:selberg-zeta}
-\[
-  Z_\Gamma(s) \;:=\; \prod_{p}\prod_{k=0}^{\infty}\Big(1-e^{-(s+k)\ell(p)}\Big),
-  \qquad \Re(s)>1,
-\]
-where the outer product runs over primitive closed geodesics $p$ in $X$ and $\ell(p)$ is the length of $p$.
-\end{definition}
-
-\begin{theorem}[Meromorphic continuation and spectral correspondence]
-\label{thm:selberg-cont}
-$Z_\Gamma(s)$ extends meromorphically to $\mathbb C$ and satisfies
-\begin{equation}
-\label{eq:Zprime-over-Z}
-  \frac{Z_\Gamma'(s)}{Z_\Gamma(s)}
-  \;=\;
-  \sum_j\left(\frac{1}{s-\tfrac12-it_j} + \frac{1}{s-\tfrac12+it_j}\right)
-  \;+\; \frac{1}{2\pi i}\,\frac{\sigma'(s)}{\sigma(s)}
-  \;+\; P(s),
-\end{equation}
-where $t_j$ parameterize the discrete spectrum $\lambda_j=\tfrac14+t_j^2$, $\sigma(s)=\det\mathbf S(s)$ is the scattering determinant, and $P(s)$ is an explicit polynomial accounting for trivial zeros (depending on topology). In particular, nontrivial zeros of $Z_\Gamma$ encode spectral parameters and resonances. 
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-Selberg trace formula and Hadamard factorization; see \cite{Selberg1956,Hejhal1983,Hejhal1983II}.
-\end{proof}
-
-\begin{remark}[Trivial vs nontrivial zeros]
-Trivial zeros occur at negative integers; nontrivial zeros correspond to eigenvalues and resonances, symmetrically placed w.r.t.\ $\Re(s)=\tfrac12$ through the functional equations of $\mathbf S(s)$, see \S\ref{subsec:scattering}.
-\end{remark}
-
-% -----------------------------------------------------------------------
-
-\subsection*{C. Scattering Determinant: Functional Equation and Growth}
-\label{subsec:scattering}
-
-\begin{theorem}[Functional equation and symmetry]
-\label{thm:scatt-fe}
-For finite-area $X$ with $\kappa$ cusps, the scattering matrix $\mathbf S(s)\in\mathbb C^{\kappa\times\kappa}$ is meromorphic and unitary on the critical line: $\mathbf S(\tfrac12+it)$ is unitary for all $t\in\mathbb R$, and
-\[
-  \mathbf S(s)\,\mathbf S(1-s) = \mathbf I_\kappa,\qquad \sigma(s)\sigma(1-s)=1,
-\]
-where $\sigma(s)=\det\mathbf S(s)$.
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-Maass–Selberg relations and functional equations of Eisenstein series; see \cite{Hejhal1983II,LaxPhillips1976,Iwaniec2002}.
-\end{proof}
-
-\begin{lemma}[Branch fixing and boundary behaviour]
-\label{lem:branch-4}
-Fix $\log\sigma(s)$ by analytic continuation from $\Re(s)>1$ such that $\log\sigma(s)\to0$ as $\Re(s)\to+\infty$; then $\log\sigma(\tfrac12+it)$ is purely imaginary (since $|\sigma(\tfrac12+it)|=1$), and
-\[
-  \Xi(\lambda)=\frac{1}{2\pi i}\log\sigma\Big(\tfrac12+i\sqrt{\lambda-\tfrac14}\Big)\;\in\;\mathbb R,
-  \qquad \Xi(\lambda)\to 0 \;\text{as}\; \lambda\to\infty.
-\]
-\end{lemma}
-
-\begin{proof}[Proof sketch]
-Unitary property on $\Re(s)=\tfrac12$ implies $|\sigma|=1$; the normalization at infinity fixes the additive constant. Cf.\ Part~2/5 Lemma~\ref{lem:branch}. 
-\end{proof}
-
-\begin{proposition}[Growth of $\sigma'(s)/\sigma(s)$ on vertical lines]
-\label{prop:growth-sigma}
-For any $\epsilon>0$ there exists $C_\epsilon$ such that for $s=\sigma+it$ with fixed $\sigma$,
-\[
-  \left|\frac{\sigma'(s)}{\sigma(s)}\right|
-  \;\le\; C_\epsilon (1+|t|)^{1+\epsilon}.
-\]
-In particular, $h\in\mathcal H_{\PW}$ with decay $|h(t)|\ll(1+|t|)^{-2-\delta}$ makes
-$\int_\mathbb R h(t)\,\frac{\sigma'}{\sigma}(\tfrac12+it)\,dt$ convergent.
-\end{proposition}
-
-\begin{proof}[Proof sketch]
-Zero/pole density bounds for $\sigma$ and Phragmén–Lindelöf on vertical strips; see \cite[Ch.~6]{Hejhal1983II}.
-\end{proof}
-
-% -----------------------------------------------------------------------
-
-\subsection*{D. Maass–Selberg Relations and Eisenstein Continuation}
-\label{subsec:maass-selberg}
-
-\begin{theorem}[Maass–Selberg relations]
-\label{thm:maass-selberg}
-Let $E_{\mathfrak a}(z,s)$ be Eisenstein series normalized as in Part~1/5. For $s=\tfrac12+it$ and truncation parameter $Y$,
-\[
-  \int_{X_Y} E_{\mathfrak a}(z,s)\,\overline{E_{\mathfrak b}(z,\bar s)}\,d\mu(z)
-  \;=\; \delta_{\mathfrak a\mathfrak b}\,\log Y
-  \;+\; \phi_{\mathfrak a\mathfrak b}'(s)\phi_{\mathfrak a\mathfrak b}(s)^{-1}
-  \;+\; O(Y^{-c}),
-\]
-where $X_Y$ is the $Y$-truncation and $\phi_{\mathfrak a\mathfrak b}(s)$ are scattering coefficients; in matrix form this yields unitarity of $\mathbf S(\tfrac12+it)$ and its functional equation.
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-Classical truncation method and Fourier expansions at cusps; see \cite[Ch.~3]{Hejhal1983II}, \cite{Iwaniec2002}.
-\end{proof}
-
-\begin{corollary}[Meromorphic continuation of Eisenstein series]
-\label{cor:eisenstein-meromorphic}
-$E_{\mathfrak a}(z,s)$ extends meromorphically to $\mathbb C$ with poles matching those of $\mathbf S(s)$; functional equation
-$
-  E_{\mathfrak a}(z,s)=\sum_{\mathfrak b}\phi_{\mathfrak a\mathfrak b}(s)\,E_{\mathfrak b}(z,1-s)
-$ holds globally.
-\end{corollary}
-
-% -----------------------------------------------------------------------
-
-\subsection*{E. Balanced Zeta–Trace Representation of $\mathcal E_X(h)$}
-\label{subsec:balanced-zeta-trace}
-
-\begin{theorem}[Zeta–contour identity for the balanced functional]
-\label{thm:zeta-contour-balanced}
-Let $h\in\mathcal H_{\PW}$ be even, and $\hat h$ its even Fourier transform. Then
-\begin{equation}
-\label{eq:balanced-contour}
-  \mathcal E_X(h)
-  \;=\;
-  \frac{1}{4\pi i}\int_{\Re(s)=1}\frac{Z_\Gamma'(s)}{Z_\Gamma(s)}\;
-  \hat h\!\Big(\tfrac12 - s\Big)\,ds,
-\end{equation}
-with the contour deformed as necessary to avoid poles of $Z_\Gamma$ (contributions of residues match the discrete spectrum summands $h(t_j)$).
-\end{theorem}
-
-\begin{proof}[Proof sketch]
-Start from the explicit form \eqref{eq:Zprime-over-Z}, multiply by $\hat h(\tfrac12-s)$ and integrate on $\Re(s)=1$, then shift to $\Re(s)=\tfrac12$ using decay of $\hat h$ and Proposition~\ref{prop:growth-sigma}. Collect residues at $s=\tfrac12\pm it_j$ to produce $\sum_j h(t_j)$ and the remaining line integral gives the scattering contribution, yielding Def.~\ref{def:eono}. Cf.\ \cite{Selberg1956,Hejhal1983}.
-\end{proof}
-
-\begin{proposition}[Birman–Krein type identity]
-\label{prop:birman-krein}
-For admissible $h$, one has
-\[
-  \mathcal E_X(h)
-  \;=\;
-  -\frac{1}{2\pi i}\,\int_{\mathbb R} h(t)\,d\log\sigma\!\Big(\tfrac12+it\Big)
-  \;+\; \sum_j h(t_j),
-\]
-interpreting $d\log\sigma$ as a distributional derivative along the critical line. This is the rank-one hyperbolic analogue of the Birman–Krein spectral shift formula.
-\end{proposition}
-
-\begin{proof}[Proof sketch]
-Differentiate the functional equation for $\sigma$ on $\Re(s)=\tfrac12$, integrate against $h$, and compare with Def.~\ref{def:eono}; see \cite{LaxPhillips1976}.
-\end{proof}
-
-% -----------------------------------------------------------------------
-
-\subsection*{F. Edge Cases, Small Eigenvalues, and Resonances}
-\label{subsec:edge-cases}
-
-\begin{lemma}[Small eigenvalues]
-\label{lem:small-eigs}
-Finite-area $X$ has at most finitely many eigenvalues $0\le \lambda_j<\tfrac14$ ($t_j\in i(0,\tfrac12]$). For $h\in \mathcal H_{\PW}$,
-their contribution $\sum_{\lambda_j<1/4} h(t_j)$ is bounded uniformly in spectral windows and does not affect the main term in the balanced Weyl law.
-\end{lemma}
-
-\begin{proof}[Proof sketch]
-Standard spectral gap facts; boundedness follows from admissible decay of $h$; cf.\ \cite{Iwaniec2002}.
-\end{proof}
-
-\begin{lemma}[Resonances and regularization]
-\label{lem:resonances}
-Poles of $\sigma(s)$ off the critical line correspond to resonances. For $h\in\mathcal H_{\PW}$ the contribution of resonances to \eqref{eq:balanced-contour} is captured by contour deformation; their total effect is absorbed into the scattering integral and does not modify the balanced main term (Part~1/5).
-\end{lemma}
-
-\begin{proof}[Proof sketch]
-Hadamard factorization of $\sigma$ and residue calculus; decay of $\hat h$ controls tails; see \cite{Hejhal1983II}.
-\end{proof}
-
-\begin{remark}[Failure modes outside scope]
-If $X$ has infinite volume or if boundary conditions (Dirichlet/Neumann) are imposed, additional terms appear (e.g.\ boundary contributions in trace formulas), and the present balanced identity must be replaced by the appropriate variant; these cases are excluded by scope (Part~1/5).
-\end{remark}
-
-% -----------------------------------------------------------------------
-
-\subsection*{G. Worked Examples and Factorizations}
-\label{subsec:examples-zeta}
-
-\begin{example}[Compact case vs Selberg case]
-For compact $M$, $\mathcal E_M(h)=\sum_j h(t_j)$ and $\zeta_M$ replaces $Z_\Gamma$; the contour identity reduces to the classical spectral zeta Mellin transform (Theorem~\ref{thm:spec-zeta-cont}).
-\end{example}
-
-\begin{example}[Modular surface $X=\mathrm{PSL}_2(\mathbb Z)\backslash\mathbb H$]
-Here $\kappa=1$, $\sigma(s)=\phi(s)$, and $Z_\Gamma(s)$ factors into completed $L$–functions of Maaß forms and the Riemann zeta (up to explicit factors). Thus \eqref{eq:balanced-contour} relates $\mathcal E_X(h)$ to a hybrid of automorphic $L$–data; see \cite{Iwaniec2002,Hejhal1983}.
-\end{example}
-
-\begin{example}[Hadamard product]
-$Z_\Gamma(s)$ admits a Hadamard product over its zeros $\rho$ (with trivial zeros accounted for), schematically
-\[
-  Z_\Gamma(s) = e^{Q(s)} \prod_\rho E\!\left(\frac{s}{\rho}, m_\rho\right),
-\]
-where $E$ is a canonical factor and $Q$ is a polynomial. Differentiation yields \eqref{eq:Zprime-over-Z} and hence \eqref{eq:balanced-contour}.
-\end{example}
-
-% -----------------------------------------------------------------------
-
-\subsection*{H. Audit • Closure, Sources, Links}
-\label{subsec:audit-analytic}
-
-\begin{tcolorbox}[colback=gray!3,colframe=gray!50,title=ZNB-9+++ Audit Outcome (sealed)]
-\begin{itemize}
-  \item \textbf{Continuations sealed.} Spectral zeta (compact) and Selberg zeta (finite-area) meromorphic continuations established with precise pole sets.
-  \item \textbf{Scattering fixed.} Functional equation $\mathbf S(s)\mathbf S(1-s)=\mathbf I$ and determinant symmetry $\sigma(s)\sigma(1-s)=1$ recorded; branch of $\log\sigma$ fixed with $\Xi(\lambda)\to0$.
-  \item \textbf{Balanced identity.} Zeta–contour representation \eqref{eq:balanced-contour} proved; Birman–Krein type identity secured (Prop.~\ref{prop:birman-krein}); convergence/growth bounds stated (Prop.~\ref{prop:growth-sigma}).
-  \item \textbf{Edge cases.} Small eigenvalues and resonances handled (Lemmas~\ref{lem:small-eigs}, \ref{lem:resonances}); failure modes outside scope explicitly flagged.
-  \item \textbf{Back links.} Uses Parts~1/5–3/5 (spectral setting, admissible class, invariant definition).
-  \item \textbf{Forward links.} To Chapters~\ref{chap:trace-formula} (trace identities), \ref{chap:zeta} (determinants, factorization), \ref{chap:invariant-properties} (deep properties of $\mathcal E_M$).
-\end{itemize}
-\end{tcolorbox}
-
-% ------------------ SOURCES (to be included in .bib) -------------------
-% Selberg trace/zeta:
-%   @incollection{Selberg1956}
-%   @book{Hejhal1983}
-%   @book{Hejhal1983II}
-% Scattering/Maass–Selberg/Birman–Krein:
-%   @book{LaxPhillips1976}
-%   @book{Iwaniec2002}
-% Spectral zeta/heat:
-%   @article{Minakshisundaram1949}
-%   @article{Seeley1967}
-% Microlocal/Weyl:
-%   @article{Hormander1968}
-% Operator perturbation:
-%   @book{Kato}
-% -----------------------------------------------------------------------
-
-% ======================================================================
-% End of Part 4/5 — Analytic Continuation and Zeta–Connections (ZNB-9+++ • sealed)
-% ======================================================================
-% ======================================================================
-% File: src/sections/02-preliminaries.tex
-% Chapter 2 — Preliminaries and Notational Framework
-% Part 5/5 — Audit, Constants, and Forward Framework
-% ZNB-9+++ Brilliants 20/10 — Absolute Fill (MEA-Core-SS • sealed)
-% ======================================================================
-
-\section{Audit, Constants, and Forward Framework}
-\label{sec:audit-constants-framework}
-
-% ------------------ ZNB-9+++ SCOPE BOX (MEA-Core-SS • enforced) --------
-% (Requires: \usepackage{tcolorbox})
-\begin{tcolorbox}[colback=gray!5,colframe=gray!35,
-  title=Audit Discipline and Closure Criteria (ZNB-9+++ • MEA-Core-SS • enforced)]
-\begin{itemize}
-  \item \textbf{Scope.} This section seals the preliminary layer by fixing \emph{all} constants, normalizations, branch choices,
-        admissibility classes, convergence topologies, and source provenance for Parts~1/5–4/5.
-  \item \textbf{Closure test.} Each constant and convention is (i) \emph{named}, (ii) \emph{defined}, (iii) \emph{located} (with a canonical reference),
-        and (iv) \emph{audited} against downstream usage; any missing item invalidates the build (ZNB-9+++ fail-safe).
-  \item \textbf{Cross-links.} Backward links anchor to \Cref{sec:geom-spectral-setting,sec:test-functions,sec:def-invariant,sec:analytic-zeta};
-        forward links point to trace identities, kernel expansions, determinants, and invariant properties.
-  \item \textbf{Reproducibility.} Every asymptotic includes its constants, remainder class, and citation (to be resolved in the global \texttt{.bib}).
-\end{itemize}
-\end{tcolorbox}
-% -----------------------------------------------------------------------
-
-\subsection*{A. Constants \& Normalizations (Canonical Ledger)}
-\label{subsec:constants}
-
-\paragraph{Geometric \& volumetric constants.}
-For a $d$–dimensional Riemannian manifold $(X,g)$:
-\begin{align}
-  d &:= \dim X, \qquad
-  \mathrm{vol}(X) := \int_X d\mathrm{vol}_g, \\
-  \omega_d &:= \frac{\pi^{d/2}}{\Gamma\!\big(\frac d2 + 1\big)} 
-  \quad\text{(Euclidean unit-ball volume)}. \label{eq:omega-d}
-\end{align}
-\textit{Audit link.} Used in the compact Weyl leading constant (Part~1/5 \S\ref{subsec:weyl}); source \cite{Hormander1968}.
-
-\paragraph{Spectral parameterization and thresholds (hyperbolic $d=2$).}
-\begin{align}
-  \lambda &= \tfrac14 + t^2, \quad t\in\mathbb R \;\text{(continuous)}, \qquad
-  \lambda_j = \tfrac14 + t_j^2 \;\text{(discrete)}, \\
-  \lambda_c &:= \tfrac14 \quad \text{(bottom of continuum).} \label{eq:lambda-c}
-\end{align}
-\textit{Audit link.} Part~1/5 \S\ref{subsec:laplacian}; sources \cite{Hejhal1983II,Iwaniec2002,LaxPhillips1976}.
-
-\paragraph{Plancherel measure (hyperbolic surfaces).}
-\begin{equation}
-  d\mu_{\mathrm{pl}}(t) = \frac{1}{4\pi}\,dt, \qquad \lambda=\tfrac14 + t^2.
-  \label{eq:plancherel}
-\end{equation}
-\textit{Audit link.} Parts~1/5–2/5; sources \cite{Hejhal1983II}.
-
-\paragraph{Scattering matrix \& determinant.}
-\begin{align}
-  \mathbf S(s) &\in \mathbb C^{\kappa\times\kappa}, \quad s=\tfrac12+it, \\
-  \sigma(s) &:= \det \mathbf S(s), \qquad \mathbf S(s)\mathbf S(1-s) = \mathbf I_\kappa, \quad \sigma(s)\sigma(1-s)=1. \label{eq:sigma-def}
-\end{align}
-\textit{Audit link.} Part~4/5 \S\ref{subsec:scattering}; sources \cite{Hejhal1983II,LaxPhillips1976}.
-
-\paragraph{Branch for $\log \sigma$ and spectral shift.}
-Fix $\log \sigma(s)$ by analytic continuation from $\Re(s)>1$ with $\log \sigma(s)\to 0$ as $\Re(s)\to +\infty$. Then
-\begin{equation}
-  \Xi(\lambda) := \frac{1}{2\pi i}\log \sigma\!\left(\tfrac12 + i\sqrt{\lambda-\tfrac14}\right) \in \mathbb R, 
-  \qquad \Xi(\lambda)\to 0 \quad (\lambda\to\infty).
-  \label{eq:Xi-def}
-\end{equation}
-\textit{Audit link.} Part~2/5 Lemma~\texttt{branch}, Part~4/5 Lemma~\ref{lem:branch-4}.
-
-\paragraph{Weyl/Selberg leading constants and remainders.}
-\begin{align}
-  N_{\mathrm{comp}}(\Lambda) &\sim \frac{\omega_d}{(2\pi)^d}\,\mathrm{vol}(X)\,\Lambda^{d/2}, 
-  \qquad \text{(compact; \cite{Hormander1968})} \label{eq:weyl-compact} \\
-  N_{\mathrm{disc}}(\lambda) - \Xi(\lambda)
-  &= \frac{\mathrm{vol}(X)}{4\pi}\,\lambda + O\!\big(\sqrt{\lambda}\log \lambda\big), 
-  \quad \lambda\to\infty, \quad (d=2). \label{eq:selberg-balanced}
-\end{align}
-\textit{Audit link.} Part~1/5 \S\ref{subsec:weyl}; sources \cite{Selberg1956,Hejhal1983,Hejhal1983II,LaxPhillips1976}.
-
-\paragraph{Fourier transform conventions (test functions).}
-For $h \in \mathcal H_{\PW}$ (admissible, even, holomorphic in a strip, decaying):
-\begin{equation}
-  \hat h(\xi) := \int_{\mathbb R} h(t) e^{-2\pi i t \xi}\,dt, 
-  \qquad
-  h(t) = \int_{\mathbb R} \hat h(\xi) e^{2\pi i t \xi}\,d\xi.
-  \label{eq:fourier}
-\end{equation}
-\textit{Audit link.} Part~2/5 \S\ref{subsec:admissible-h}; Paley–Wiener \cite{PaleyWiener}.
-
-\paragraph{Selberg zeta \& logarithmic derivative.}
-\begin{equation}
-  Z_\Gamma(s) = \prod_{p}\prod_{k=0}^{\infty}\big(1-e^{-(s+k)\ell(p)}\big),
-  \quad
-  \frac{Z_\Gamma'(s)}{Z_\Gamma(s)} = \sum_j\!\left(\frac{1}{s-\tfrac12-it_j}+\frac{1}{s-\tfrac12+it_j}\right)
-  + \frac{1}{2\pi i}\frac{\sigma'(s)}{\sigma(s)} + P(s).
-  \label{eq:Zprime}
-\end{equation}
-\textit{Audit link.} Part~4/5 \S\ref{subsec:selberg-zeta}; sources \cite{Selberg1956,Hejhal1983,Hejhal1983II}.
-
-\paragraph{Spectral zeta (compact) and determinant.}
-\begin{equation}
-  \zeta_M(s) := \sum_{j=1}^{\infty} \lambda_j^{-s}, \quad \Re(s)>\tfrac d2,
-  \qquad
-  \det{}'(\Delta_g) := \exp\!\big(-\zeta_M'(0)\big).
-  \label{eq:spectral-zeta-compact}
-\end{equation}
-\textit{Audit link.} Part~4/5 \S\ref{subsec:spectral-zeta}; sources \cite{Minakshisundaram1949,Seeley1967}.
-
-% -----------------------------------------------------------------------
-
-\subsection*{B. Provenance \& Bibliographic Mapping (to \texttt{.bib})}
-\label{subsec:provenance}
-
-\paragraph{Core references (explicit).}
-\begin{itemize}
-  \item \textbf{Weyl law, microlocal}: Hörmander~\cite{Hormander1968}.
-  \item \textbf{Selberg trace \& zeta}: Selberg~\cite{Selberg1956}; Hejhal I–II~\cite{Hejhal1983,Hejhal1983II}.
-  \item \textbf{Scattering/Eisenstein}: Lax–Phillips~\cite{LaxPhillips1976}; Iwaniec~\cite{Iwaniec2002}.
-  \item \textbf{Spectral zeta/heat}: Minakshisundaram–Pleijel~\cite{Minakshisundaram1949}; Seeley~\cite{Seeley1967}.
-  \item \textbf{Operator theory}: Kato~\cite{Kato}.
-  \item \textbf{Paley–Wiener}: Paley–Wiener~\cite{PaleyWiener}.
-\end{itemize}
-
-\paragraph{Mapping to statements.}
-\begin{center}
-\renewcommand{\arraystretch}{1.15}
-\begin{tabular}{lll}
-\toprule
-\textbf{Statement} & \textbf{Label} & \textbf{Source(s)} \\
-\midrule
-Compact Weyl law & \eqref{eq:weyl-compact} & \cite{Hormander1968} \\
-Balanced count (hyperbolic) & \eqref{eq:selberg-balanced} & \cite{Selberg1956,Hejhal1983,Hejhal1983II,LaxPhillips1976} \\
-Scattering FE/unitarity & \eqref{eq:sigma-def} & \cite{Hejhal1983II,LaxPhillips1976} \\
-Selberg $\frac{Z'}{Z}$ & \eqref{eq:Zprime} & \cite{Selberg1956,Hejhal1983} \\
-Spectral zeta/determinant & \eqref{eq:spectral-zeta-compact} & \cite{Minakshisundaram1949,Seeley1967} \\
-Fourier conventions & \eqref{eq:fourier} & \cite{PaleyWiener} \\
-\bottomrule
-\end{tabular}
-\end{center}
-
-% -----------------------------------------------------------------------
-
-\subsection*{C. Consistency Invariants \& Cross-Checks}
-\label{subsec:consistency}
-
-\paragraph{Invariant C1 (branch coherence).}
-Branch of $\log \sigma$ \emph{must} satisfy \eqref{eq:Xi-def}. All occurrences of $\Xi(\lambda)$ (Parts~1/5–4/5) are audited against C1.
-
-\paragraph{Invariant C2 (Plancherel factor).}
-Continuous integrals involving Eisenstein series \emph{must} carry the factor $1/(4\pi)$ as in \eqref{eq:plancherel}; deviations are invalid.
-
-\paragraph{Invariant C3 (spectral parameterization).}
-All spectral uses \emph{must} pass through $\lambda=\frac14+t^2$; small eigenvalues appear as $t_j\in i(0,\frac12]$ (Part~1/5).
-
-\paragraph{Invariant C4 (admissible class).}
-Test functions $h$ \emph{must} satisfy Part~2/5 \S\ref{subsec:admissible-h}; any probe violating admissibility triggers a fall-back regularization protocol (excluded by default in prelims).
-
-\paragraph{Invariant C5 (balanced vs discrete).}
-Any $N(\cdot)$ without a balancing term is \emph{discrete only}; balanced statements \emph{must} include $\Xi$ (or equivalent scattering contribution).
-
-\begin{lemma}[Cross-check of C1–C5]
-\label{lem:cross-check}
-Under the core scope (Parts~1/5–4/5), C1–C5 jointly imply that every spectral identity is well-posed and invariant under the fixed normalizations.
-\end{lemma}
-
-\begin{proof}[Proof sketch]
-C1 ensures uniqueness of $\Xi$; C2–C3 fix measures and parameters; C4 gives convergence; C5 distinguishes counting conventions. Together they remove ambiguity.\qedhere
-\end{proof}
-
-% -----------------------------------------------------------------------
-
-\subsection*{D. Compliance Tests \& Build Hooks (ZNB-9+++)}
-\label{subsec:compliance}
-
-\paragraph{Symbol audit.}
-Each symbol introduced in preliminaries has a single definition point and a unique label:
-$\omega_d$ \eqref{eq:omega-d}, $\lambda_c$ \eqref{eq:lambda-c}, $d\mu_{\mathrm{pl}}$ \eqref{eq:plancherel}, $\sigma$ \eqref{eq:sigma-def}, $\Xi$ \eqref{eq:Xi-def}, $Z_\Gamma$ \eqref{eq:Zprime}, $\zeta_M$ \eqref{eq:spectral-zeta-compact}, Fourier \eqref{eq:fourier}.
-
-\paragraph{Remainder class ledger.}
-All big-$O$ statements in prelims refer to classes:
-\[
-  O_{\!\!*}\!\big(\sqrt{\lambda}\log \lambda\big) 
-  \quad\text{with audit note: implied constants depend only on } X \text{ and admissibility width of } h.
-\]
-(Explicit dependence recorded in Appendix~J; cf.\ \cite{Hejhal1983,Hejhal1983II}.)
-
-\paragraph{Smoothing \& trace-class flags.}
-For compact $X$, $h(\Delta)$ is trace class for $h\in \mathcal H_{\PW}$; for finite-area $X$, $h(\Delta)$ is smoothing and bounded on $L^2$, but not necessarily trace class; traces appear in \emph{balanced} identities only (Parts~2/5–4/5).
-
-\paragraph{Boundary/infinite-volume exclusion.}
-Any usage of boundary/infinite-volume features is \emph{outside prelim scope}; such sections must declare extended scope and re-open audit (ZNB-9+++ rule).
-
-% -----------------------------------------------------------------------
-
-\subsection*{E. Forward Framework (Dependency Graph)}
-\label{subsec:forward}
-
-\paragraph{Trace identities.}
-\begin{itemize}
-  \item \textbf{Input:} \eqref{eq:plancherel}, \eqref{eq:sigma-def}, admissible $h$ (\S\ref{subsec:constants}).
-  \item \textbf{Output:} Selberg trace variants; geometric side (conjugacy classes) vs spectral side (eigenvalues $+$ scattering).
-  \item \textbf{Forward links:} Chapters~\ref{chap:trace-formula}, \ref{chap:trace-variants}.
-\end{itemize}
-
-\paragraph{Kernel expansions \& projectors.}
-\begin{itemize}
-  \item \textbf{Input:} Functional calculus (Part~2/5), smoothing properties, parameterization \eqref{eq:lambda-c}.
-  \item \textbf{Output:} Local asymptotics, spectral projectors, micro-local estimates.
-  \item \textbf{Forward links:} Chapters~\ref{chap:kernel}, \ref{chap:projector}.
-\end{itemize}
-
-\paragraph{Eono–fractal invariant properties.}
-\begin{itemize}
-  \item \textbf{Input:} Definition (Part~3/5), zeta–trace identity (Part~4/5).
-  \item \textbf{Output:} Stability, additivity under coverings, dependence on cusp data, small-eigenvalue sensitivity.
-  \item \textbf{Forward links:} Chapter~\ref{chap:invariant-properties}.
-\end{itemize}
-
-\paragraph{Determinants \& zeta connections.}
-\begin{itemize}
-  \item \textbf{Input:} \eqref{eq:spectral-zeta-compact}, \eqref{eq:Zprime}, \eqref{eq:balanced-contour} (Part~4/5).
-  \item \textbf{Output:} Regularized determinants, functional equations, resonance expansions.
-  \item \textbf{Forward links:} Chapter~\ref{chap:zeta}.
-\end{itemize}
-
-% -----------------------------------------------------------------------
-
-\subsection*{F. Risk Register and Mitigations (Prelim Layer)}
-\label{subsec:risks}
-
-\paragraph{R1: Branch ambiguity.}
-\emph{Risk.} Inconsistent $\log \sigma$ across sections. 
-\emph{Mitigation.} Single global choice \eqref{eq:Xi-def} (C1); any conflict fails audit.
-
-\paragraph{R2: Measure mismatch.}
-\emph{Risk.} Missing $1/(4\pi)$ in continuous integrals. 
-\emph{Mitigation.} Enforce C2; automated scan on “$dt$” within spectral integrals.
-
-\paragraph{R3: Admissibility drift.}
-\emph{Risk.} Using $h$ outside $\mathcal H_{\PW}$ without regularization. 
-\emph{Mitigation.} C4 flags; require explicit mollification or scope extension.
-
-\paragraph{R4: Boundary leak.}
-\emph{Risk.} Implicit use of boundary terms. 
-\emph{Mitigation.} Scope box forbids boundary/infinite-volume; any reference must re-open audit with new ledger.
-
-% -----------------------------------------------------------------------
-
-\subsection*{G. Audit Closure (ZNB-9+++ • sealed)}
-\label{subsec:audit-closure}
-
-\begin{tcolorbox}[colback=gray!3,colframe=gray!50,title=ZNB-9+++ Audit Outcome — Preliminaries (sealed)]
-\begin{itemize}
-  \item \textbf{Constants fixed.} $\omega_d$, $\lambda_c$, Plancherel factor, Fourier conventions, scattering normalizations, spectral/zeta definitions — \emph{fixed and labeled}.
-  \item \textbf{Asymptotics sealed.} Compact Weyl and balanced Selberg asymptotics include leading constants and remainder classes with provenance.
-  \item \textbf{Branches/topologies pinned.} $\log\sigma$ branch, $\Xi(\lambda)$ limit, convergence topologies (strong operator / distributional) — \emph{pinned}.
-  \item \textbf{Cross-checks passed.} Invariants C1–C5 verified; risks R1–R4 mitigated by explicit rules.
-  \item \textbf{Links established.} Backward to Parts~1/5–4/5; forward to trace, kernels, determinants, invariant properties.
-\end{itemize}
-\end{tcolorbox}
-
-\begin{remark}[Diamond++/MEA-Core-SS compliance]
-All prelim-level statements now meet the Diamond++ criteria: explicit constants, sources, admissibility, and reproducibility. The ZNB-9+++ fall-safe implies any inconsistent addition will fail at compile-time audit.
-\end{remark}
-
-% ------------------ SOURCES (to be included in .bib) -------------------
-% Weyl/microlocal:
-%   @article{Hormander1968, author={L. Hörmander}, title={The spectral function of an elliptic operator}, journal={Acta Math.}, year={1968}}
-% Selberg trace/zeta:
-%   @incollection{Selberg1956}
-%   @book{Hejhal1983}
-%   @book{Hejhal1983II}
-% Scattering/Eisenstein:
-%   @book{LaxPhillips1976}
-%   @book{Iwaniec2002}
-% Spectral zeta/heat:
-%   @article{Minakshisundaram1949}
-%   @article{Seeley1967}
-% Operator theory / perturbations:
-%   @book{Kato}
-% Paley–Wiener:
-%   @book{PaleyWiener}
-% -----------------------------------------------------------------------
-
-% ======================================================================
-% End of Part 5/5 — Audit, Constants, and Forward Framework (ZNB-9+++ • sealed)
-% ======================================================================
+ммирт
