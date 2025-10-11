@@ -1,1 +1,116 @@
+% ─────────────────────────────────────────────
+% Tome II : Absolutum invariant — Preface (v10.1)
+% Path    : src/sections-2/00-preface-abs_invariant.tex
+% Mode    : DIAMOND-STRICT | Academic-Annals | BRILLIANT-LUMEN v10.1
+% ─────────────────────────────────────────────
 
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+
+\begin{center}
+\textbf{The Absolutum invariant: analytic–spectral foundations without new axioms}
+\end{center}
+
+\vspace{0.75em}
+
+\noindent\textbf{Foundational framework.}
+All results of Tome~II are formulated within the classical set theory \textbf{ZFC}.
+Whenever class-level arguments are convenient, we use the conservative notational extension \textbf{GBC} 
+(with global choice, but all results are interpretable in \textbf{ZFC} via standard coding).  
+Constructive variants (CZF/IZF) are indicated explicitly when relevant; otherwise, classical logic is assumed.  
+No new axioms beyond this foundation are introduced in the present tome.  
+The phrase “without axioms’’ denotes “without additional axioms beyond the chosen base system.’’
+
+\vspace{0.5em}
+\noindent\textbf{Position.}
+Tome~I (\emph{Eon–fractal invariant}) established the categorical and local–global scaffolding.
+Tome~II (\emph{Absolutum invariant}) develops the complete analytic–spectral layer upon that structure.
+Tome~III will employ the invariant exclusively within pure mathematics, addressing limit and classical millennium problems, yet never introducing applied interpretations or computational keys.
+
+\vspace{0.5em}
+\noindent\textbf{Objective.}
+We construct a universal analytic–spectral object, the \emph{Absolutum invariant} \(\mathfrak A\),
+which unifies sheaf–theoretic descent, operator–theoretic spectra, and cohomological obstructions within a single measurable framework.
+The invariant is developed through provable closure, stability, and functoriality statements sufficient for applications in higher theoretical analysis.
+
+\vspace{0.5em}
+\noindent\textbf{Methodology and editorial policy.}
+The exposition follows the schema
+\[
+\mathrm{Definition} \;\longrightarrow\; \mathrm{Lemma} \;\longrightarrow\; \mathrm{Theorem} \;\longrightarrow\; \mathrm{Correctness\ Test}.
+\]
+Each notion appears by explicit definition, and each assertion is proved or precisely referenced.
+\textbf{Correctness Tests (CT)} are \emph{mathematical theorems} of the form
+\[
+\forall X\,(\varphi(X)\;\rightarrow\;\psi(X)),
+\]
+where \(\varphi,\psi\) belong to the formal signature of the tome.
+They are not assumed to be algorithmically decidable unless stated.  
+A dual structure is maintained: the formal body (proofs) and concise orientation notes (nonformal context), which never enter logical derivations.
+
+\vspace{0.5em}
+\noindent\textbf{Minimal semantic vocabulary.}
+Let \(\Gamma\) denote a small site with finite Čech coverings.
+Over \(\Gamma\), we consider separable Hilbert fields, unital \(C^\ast\)-algebra sheaves with faithful semifinite traces, 
+and measurable families of self-adjoint Dirac/Laplace-type operators with compact resolvent on each object \(C\in\Gamma\).
+Local data are glued by descent, and obstructions are encoded cohomologically.
+
+\vspace{0.5em}
+\noindent\textbf{Meta-operators as formal devices.}
+We employ three rigorously defined meta-operators, each serving a structural role within the formal system:
+
+\begin{itemize}
+  \item \textbf{\(\Omega\)} (\emph{domain guard}). A predicate \(\Omega(C)\) on contexts \(C\in\mathrm{Ob}(\Gamma)\) specifying admissibility 
+  (measurability, separability, trace–compatibility, ellipticity).  
+  All quantifiers are explicitly restricted to objects \(C\) satisfying \(\Omega(C)\);  
+  statements for \(C\not\models\Omega(C)\) are vacuous.  
+  Hence “boundary of applicability’’ means “all claims are formed under \(\Omega\).’’
+  
+  \item \textbf{\(\Sigma\)} (\emph{selection functional}). A choice operator
+  \(\Sigma:\mathrm{Sect}(C)/\!\sim\,\to \mathrm{Sect}(C)\)
+  selecting a representative in each nonempty gauge–equivalence class once existence is established.  
+  Proofs are invariant under the choice of representative.
+  If \(\Sigma\) requires the Axiom of Choice (AC), this dependency is stated explicitly.
+
+  \item \textbf{\(\Psi\)} (\emph{reflexive endofunctor}).  
+  An endofunctor \(\Psi:\mathsf{Inv}\to\mathsf{Inv}\) on the category of invariants with natural transformations 
+  \(\eta:\mathrm{Id}\Rightarrow\Psi\) and \(\mu:\Psi^2\Rightarrow\Psi\) forming an idempotent monad.  
+  \(\Psi\) is conservative: if a statement \(P\) in the base language holds for an invariant \(I\), then \(P\) holds for \(\Psi(I)\) and conversely, provided \(P\) is preserved by the structure maps.  
+  The existence of \(\Psi\) is established in Theorem~2.3.7.
+\end{itemize}
+
+\vspace{0.5em}
+\noindent\textbf{Scope of CT blocks.}
+CT statements establish:  
+(i) descent and globalization under curvature and compatibility bounds;  
+(ii) stability under refinement and gauge transformations;  
+(iii) scale control (\(\varepsilon\)-regularity and \(\Gamma\)-limits);  
+(iv) spectral continuity and meromorphic control for zeta–functions.  
+Each chapter ends with an explicit CT block.
+
+\vspace{0.5em}
+\noindent\textbf{Relations among tomes.}
+Tome~I provides the local–global grammar;  
+Tome~II develops analytic–spectral theorems;  
+Tome~III employs only their corollaries, adding no new principles.  
+See Chapter~\ref{chap:spectral-descent} for the main construction 
+and Theorem~\ref{thm:absolutum-universality} for the universal property.
+
+\vspace{0.5em}
+\noindent\textbf{Reading protocol.}
+Each chapter opens with a mini–table of contents and a dependency map.  
+Forward and backward references are explicit.  
+Orientation notes are typographically separated and excluded from proofs.  
+All quantifiers, domains, and operators are defined before use.
+
+\vspace{1.25em}
+\begin{flushright}
+\textit{Alexander S. Kozhukharev}\\
+Independent Researcher, Moscow\\
+Tome II: \emph{Absolutum invariant}\\
+\textit{Version BRILLIANT–LUMEN v10.1 (arXiv/Annals ready)}
+\end{flushright}
+
+% ─────────────────────────────────────────────
+% End of Preface
+% ─────────────────────────────────────────────
